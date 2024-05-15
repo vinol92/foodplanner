@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/pregistro"
     android:background="#405F48">
-    >
+
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar2"
@@ -42,7 +42,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar2"
-        app:layout_constraintVertical_bias="0.001" />
+        app:layout_constraintVertical_bias="0.001"
+        android:progressTint="@color/lightgreen"/>
 
     <TextView
         android:id="@+id/textView"
@@ -61,7 +62,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/myButton"
+        android:id="@+id/ideas"
         android:layout_width="373dp"
         android:layout_height="89dp"
         android:background="@drawable/seleccion"
@@ -81,7 +82,7 @@
         app:layout_constraintVertical_bias="0.405" />
 
     <Button
-        android:id="@+id/myButton3"
+        android:id="@+id/unirmenutri"
         android:layout_width="373dp"
         android:layout_height="89dp"
         android:layout_marginTop="9dp"
@@ -97,11 +98,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myButton"
+        app:layout_constraintTop_toBottomOf="@+id/ideas"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/myButton2"
+        android:id="@+id/dieta"
         android:layout_width="373dp"
         android:layout_height="89dp"
         android:background="@drawable/seleccion"
@@ -129,7 +130,7 @@
         android:text="Lo primero es que deseas hacer con nosotros."
         android:textColor="@color/white"
         android:textSize="13sp"
-        app:layout_constraintBottom_toTopOf="@+id/myButton"
+        app:layout_constraintBottom_toTopOf="@+id/ideas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.11"
         app:layout_constraintStart_toStartOf="parent"

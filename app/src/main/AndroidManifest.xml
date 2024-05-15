@@ -17,10 +17,20 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Agrega la actividad de registro -->
+        <activity android:name=".registro" />
+        <activity android:name=".RegistroNutri" />
+        <activity android:name=".RegistroNutri2" />
+        <activity android:name=".Bienvenida" />
+        <activity android:name=".InfoUsuario" />
+        <activity android:name=".InfoUsuario2" />
+
+
+
     </application>
 
 </manifest>

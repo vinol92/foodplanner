@@ -3,4 +3,5 @@
     <string name="mi_texto_con_dos_parrafos">QUIERO REALIZAR UNA DIETA\n\nDeseas mejorar tus hábitos o tus rutinas, mejorar tu alimentación.</string>
     <string name="mi_texto_con_dos_parrafos2">QUIERO NUEVAS IDEAS PARA COCINAR\n\nDeseas encontrar recetas que se ajusten a tus rutinas y alimentación.</string>
     <string name="mi_texto_con_dos_parrafos3">QUIERO UNIRME A FOOD PLANNER\n\nDeseas trabajar con nosotros y formar parte del equipo de nutricionistas profesionales.</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
