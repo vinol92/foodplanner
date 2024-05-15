@@ -1,5 +1,6 @@
 package com.example.foodplanner;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -34,8 +35,9 @@ public class Bienvenida extends AppCompatActivity {
         btnFinalizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Puedes agregar aquí el código para finalizar la actividad o realizar alguna acción adicional
-                finish();
+                Intent intent = new Intent(Bienvenida.this, ApiRecipes.class);
+                startActivity(intent);
+
             }
         });
         // Configurar el ProgressBar para que se rellene un poco
