@@ -25,7 +25,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     private List<Recipe> recipeList;
 
     Context context;
-    private static OnItemClickListener mListener;
 
     RecipeClickIntent listenerRecipe;
 
