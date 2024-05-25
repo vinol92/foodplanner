@@ -1,4 +1,4 @@
-package com.example.foodplanner;
+package com.example.foodplanner.Views;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.foodplanner.R;
 
 public class RegistroNutri extends AppCompatActivity {
 
