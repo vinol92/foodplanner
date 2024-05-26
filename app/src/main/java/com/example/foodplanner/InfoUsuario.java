@@ -45,14 +45,22 @@ public class InfoUsuario extends AppCompatActivity {
         btnSiguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Validar campos
+                // Verificar campos vacíos y otros errores
                 String mensajeError = validarCampos();
                 if (mensajeError != null) {
                     Toast.makeText(InfoUsuario.this, mensajeError, Toast.LENGTH_SHORT).show();
                 } else {
-                    // Crear un Intent para ir a la actividad InfoUsuario2
+                    // Guardar los datos en variables estáticas
+                    InfoUsuario2.nombre = etNombre.getText().toString().trim();
+                    InfoUsuario2.apellido = etApellido.getText().toString().trim();
+                    InfoUsuario2.usuario = etUsuario.getText().toString().trim();
+                    InfoUsuario2.email = etEmail.getText().toString().trim();
+                    InfoUsuario2.contra = etContra.getText().toString().trim();
+
+
+                    // Crear un Intent para ir a la actividad Bienvenida
                     Intent intent = new Intent(InfoUsuario.this, InfoUsuario2.class);
-                    startActivity(intent); // Iniciar la actividad InfoUsuario2
+                    startActivity(intent); // Iniciar la actividad Bienvenida
                 }
             }
         });

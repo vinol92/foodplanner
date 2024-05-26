@@ -9,12 +9,15 @@ import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+import java.util.List;
 public class Bienvenida extends AppCompatActivity {
+
 
     private Button btnBack;
     private Button btnFinalizar;
 
-    // Variables para almacenar los datos de RegistroNutri y RegistroNutri2
+    // Variables para almacenar los datos
     private String nombre;
     private String apellido;
     private String colegiado;
@@ -23,6 +26,11 @@ public class Bienvenida extends AppCompatActivity {
     private String telefono;
     private String email;
     private String contra;
+    // Variables para almacenar los datos de Usuario
+    private String nutricionista;
+    private List<String> Stock= new ArrayList<>();
+    private List<String> alergias = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +54,17 @@ public class Bienvenida extends AppCompatActivity {
         telefono = intentRegistroNutri2.getStringExtra("telefono");
         email = intentRegistroNutri2.getStringExtra("email");
         contra = intentRegistroNutri2.getStringExtra("contra");
+
+        Intent intentinfoUsuario = getIntent();
+        nombre = intentinfoUsuario.getStringExtra("nombre");
+        apellido = intentinfoUsuario.getStringExtra("apellido");
+        usuario = intentinfoUsuario.getStringExtra("usuario");
+        email = intentinfoUsuario.getStringExtra("email");
+        contra = intentinfoUsuario.getStringExtra("contra");
+        Intent intentInfoUsuario2 = getIntent();
+        alergias = intentInfoUsuario2.getStringArrayListExtra("alergias");
+
+
 
         // Configurar clic del botón "Atrás"
         btnBack.setOnClickListener(new View.OnClickListener() {
