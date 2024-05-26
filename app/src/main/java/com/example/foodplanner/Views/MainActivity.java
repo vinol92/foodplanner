@@ -30,7 +30,7 @@ Button registra;
         registra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent( MainActivity.this, ApiRecipes.class);
+                Intent i = new Intent( MainActivity.this, Inicio.class);
                 startActivity(i);
             }
         });

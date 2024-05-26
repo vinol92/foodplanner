@@ -1,4 +1,4 @@
-package com.example.foodplanner;
+package com.example.foodplanner.Views;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +9,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.example.foodplanner.R;
 
 public class PerfilFragment extends Fragment {
 

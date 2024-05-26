@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/imageFood"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -25,8 +25,18 @@
         app:layout_constraintStart_toEndOf="@id/imageFood"
         app:layout_constraintTop_toTopOf="@id/imageFood"
         app:layout_constraintBottom_toBottomOf="@id/imageFood"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toStartOf="@id/saveIcon" />
 
+    <ImageView
+        android:id="@+id/saveIcon"
+        android:layout_width="50dp"
+        android:layout_height="54dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.815"
+        tools:srcCompat="@tools:sample/avatars" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

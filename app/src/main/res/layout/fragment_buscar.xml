@@ -1,14 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BuscarFragment">
+    tools:context=".Views.BuscarFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <EditText
+        android:id="@+id/editTextQuery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_centerHorizontal="true"
+        android:hint="Write here"/>
+
+    <Button
+        android:id="@+id/buttonSend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextQuery"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"
+        android:text="Enviar"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonSend"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="16dp"
+        android:scrollbars="vertical"/>
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
-</FrameLayout>
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewResponse"
+        android:layout_below="@id/recyclerView"/>
+</RelativeLayout>

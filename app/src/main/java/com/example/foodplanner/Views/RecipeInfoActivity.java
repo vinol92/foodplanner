@@ -1,5 +1,7 @@
 package com.example.foodplanner.Views;
 
+import static java.security.AccessController.getContext;
+
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -9,13 +11,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodplanner.Interfaces.InfoRecipes;
+import com.example.foodplanner.Interfaces.InstructionsRecipes;
 import com.example.foodplanner.Models.ApiManager;
 import com.example.foodplanner.Models.InfoIntentRecipe;
+import com.example.foodplanner.Models.Instructions;
+import com.example.foodplanner.Models.RecipeAdapter;
+import com.example.foodplanner.Models.StepsAdapter;
 import com.example.foodplanner.R;
 import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 
 //Class for the view that is the intent for the info of the recipes.
@@ -25,6 +34,7 @@ ImageView imageViewFood;
 TextView textViewTitle, textViewInfo;
 RecyclerView recyclerViewSteps;
 
+StepsAdapter stepsAdapter;
 ApiManager manager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +47,9 @@ ApiManager manager;
         id = Integer.parseInt(getIntent().getStringExtra("id"));
         manager = new ApiManager(this);
         manager.getRecipesDetails(infoRecipes,id);
+        manager.getRecipeSteps(instructionsRecipes, id);
+        recyclerViewSteps.setLayoutManager(new LinearLayoutManager(this));
+
     }
 
 
@@ -47,6 +60,21 @@ ApiManager manager;
             textViewTitle.setText(response.title);
             textViewInfo.setText(response.summary);
             Picasso.get().load(response.image).into(imageViewFood);
+        }
+
+        @Override
+        public void error(String message) {
+
+        }
+    };
+    private final InstructionsRecipes instructionsRecipes = new InstructionsRecipes() {
+        @Override
+        public void steps(List<Instructions> response, String message) {
+            recyclerViewSteps.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+            stepsAdapter = new StepsAdapter(getApplicationContext(),response);
+
+
+            recyclerViewSteps.setAdapter(stepsAdapter);
         }
 
         @Override

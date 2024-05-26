@@ -1,16 +1,23 @@
 package com.example.foodplanner.Models;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodplanner.Interfaces.RecipeClickIntent;
 import com.example.foodplanner.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.mlkit.common.model.DownloadConditions;
 import com.google.mlkit.nl.translate.TranslateLanguage;
 import com.google.mlkit.nl.translate.Translation;
@@ -31,8 +38,9 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     public RecipeAdapter(List<Recipe> recipeList, Context context, RecipeClickIntent listenerRecipe) {
         this.recipeList = recipeList;
         this.context = context;
-        this.listenerRecipe  = listenerRecipe;
+        this.listenerRecipe = listenerRecipe;
     }
+
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -46,13 +54,22 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
 
         translateRecipeTitle(recipeList.get(position).getTitle(), holder); //Translate to spanish the name of the Recipe
         Picasso.get().load(recipeList.get(position).image).into(holder.imageFood); //This is a library to load images.
-
+        holder.saveIcon.setImageResource(R.drawable.lector);
         //If the name of the Recipe is open, it goes to the intent of the recipe selected
         holder.recipeTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 listenerRecipe.onRecipeClicked(String.valueOf(recipeList.get(holder.getAdapterPosition()).getId()));
+            }
+        });
+
+        holder.saveIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String userName = "Pepe";
+                saveRecipeToFirebase(recipe,userName);
             }
         });
     }
@@ -65,14 +82,16 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private TextView recipeTitle;
 
-        private ImageView imageFood;
+        private ImageView imageFood, saveIcon;
+
         public ViewHolder(View v) {
             super(v);
             recipeTitle = v.findViewById(R.id.recipeTitle);
             imageFood = v.findViewById(R.id.imageFood);
+            saveIcon = v.findViewById(R.id.saveIcon);
+
         }
     }
-
 
 
     // This method translate the Recipe Title
@@ -106,7 +125,23 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
                         });
     }
 
+    private void saveRecipeToFirebase(Recipe recipe, String userName) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Users").child(userName).child("Recipes");
 
+        myRef.child(recipe.getTitle()).setValue(recipe)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(context, "Recipe saved!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(context, "Failed to save recipe.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
 
 }
+
 

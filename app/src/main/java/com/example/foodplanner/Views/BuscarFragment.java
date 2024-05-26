@@ -2,22 +2,27 @@ package com.example.foodplanner.Views;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import androidx.appcompat.app.AppCompatActivity;
+
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.foodplanner.Interfaces.SearchRecipe;
-import com.example.foodplanner.Models.RandomRecipesAPI;
-import com.example.foodplanner.Interfaces.RecipeClickIntent;
-import com.example.foodplanner.R;
-import com.example.foodplanner.Models.RecipeAdapter;
-import com.example.foodplanner.Models.ApiManager;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
-//Class for the view that search recipes in Spoonacular and gets the results in a RecyclerView.
-public class ApiRecipes extends AppCompatActivity {
+import com.example.foodplanner.Interfaces.RecipeClickIntent;
+import com.example.foodplanner.Interfaces.SearchRecipe;
+import com.example.foodplanner.Models.ApiManager;
+import com.example.foodplanner.Models.RandomRecipesAPI;
+import com.example.foodplanner.Models.RecipeAdapter;
+import com.example.foodplanner.R;
+
+
+public class BuscarFragment extends Fragment {
+
     private EditText editTextQuery;
     private Button buttonSend;
     private RecyclerView recyclerView;
@@ -29,17 +34,19 @@ public class ApiRecipes extends AppCompatActivity {
     SearchRecipe recipeRecylcerView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_api_recipes);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View rootView = inflater.inflate(R.layout.fragment_buscar, container, false);
 
-        editTextQuery = findViewById(R.id.editTextQuery);
-        buttonSend = findViewById(R.id.buttonSend);
-        recyclerView = findViewById(R.id.recyclerView);
+        editTextQuery = rootView.findViewById(R.id.editTextQuery);
+        buttonSend = rootView.findViewById(R.id.buttonSend);
+        recyclerView = rootView.findViewById(R.id.recyclerView);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        apiManager = new ApiManager(this);
+        recyclerView.setHasFixedSize(true);
+        apiManager = new ApiManager(getContext());
 
         //When this button is pressed, it gets the text of the query and calls the ApiManager class to getRandomRecipes
         buttonSend.setOnClickListener(new View.OnClickListener() {
@@ -50,14 +57,14 @@ public class ApiRecipes extends AppCompatActivity {
             }
         });
 
-
+        return rootView;
     }
 
     //This calls the Interface "SearchRecipe" The method search loads the the recyclerView with the recipes.
-   private final SearchRecipe searchRecipe = new SearchRecipe() {
+    private final SearchRecipe searchRecipe = new SearchRecipe() {
         @Override
         public void search(RandomRecipesAPI response, String message) {
-            recipeAdapter = new RecipeAdapter(response.recipes, ApiRecipes.this, recipeClickIntent);
+            recipeAdapter = new RecipeAdapter(response.recipes, getContext(), recipeClickIntent);
             recyclerView.setAdapter(recipeAdapter);
         }
 
@@ -72,10 +79,7 @@ public class ApiRecipes extends AppCompatActivity {
     private final RecipeClickIntent recipeClickIntent = new RecipeClickIntent() {
         @Override
         public void onRecipeClicked(String id) {
-                startActivity(new Intent(ApiRecipes.this, RecipeInfoActivity.class).putExtra("id",id));
+            startActivity(new Intent(getActivity(), RecipeInfoActivity.class).putExtra("id",id));
         }
     };
-}
-
-
-
+    }
