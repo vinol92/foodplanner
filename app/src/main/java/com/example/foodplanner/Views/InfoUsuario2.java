@@ -1,4 +1,4 @@
-package com.example.foodplanner;
+package com.example.foodplanner.Views;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.foodplanner.R;
 
 import java.util.ArrayList;
 import java.util.List;
