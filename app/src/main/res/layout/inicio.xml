@@ -9,8 +9,8 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="413dp"
-        android:layout_height="41dp"
+        android:layout_width="414dp"
+        android:layout_height="49dp"
         android:layout_gravity="center_horizontal"
         android:background="@color/darckgreen"
         android:minHeight="?attr/actionBarSize"
@@ -21,7 +21,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
-        <!-- Agrega un TextView centrado dentro del Toolbar -->
         <TextView
             android:id="@+id/nombreusu"
             android:layout_width="wrap_content"
@@ -29,27 +28,12 @@
             android:layout_gravity="center"
             android:text="Nombre de usuario"
             android:textColor="#FFFFFF"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+
+            />
 
 
     </androidx.appcompat.widget.Toolbar>
-
-    <Button
-        android:id="@+id/siguiente"
-        android:layout_width="114dp"
-        android:layout_height="30dp"
-        android:layout_gravity="end|center_vertical"
-        android:background="@drawable/botonesstilo"
-        android:text="Premium"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.946"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.074" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
@@ -113,6 +97,7 @@
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
     <FrameLayout
+        android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
@@ -121,5 +106,24 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
     </FrameLayout>
+
+    <Button
+        android:id="@+id/premium"
+        android:layout_width="114dp"
+        android:layout_height="30dp"
+        android:layout_gravity="end|center_vertical"
+        android:layout_marginStart="299dp"
+
+        android:layout_marginBottom="11dp"
+        android:background="@drawable/botonesstilo"
+        android:text="Premium"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

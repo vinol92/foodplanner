@@ -3,8 +3,11 @@ package com.example.foodplanner.Views;
 import static java.security.AccessController.getContext;
 
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,6 +36,7 @@ int id;
 ImageView imageViewFood;
 TextView textViewTitle, textViewInfo;
 RecyclerView recyclerViewSteps;
+    private ImageButton btnBack; // Cambia Button a ImageButton
 
 StepsAdapter stepsAdapter;
 ApiManager manager;
@@ -49,7 +53,15 @@ ApiManager manager;
         manager.getRecipesDetails(infoRecipes,id);
         manager.getRecipeSteps(instructionsRecipes, id);
         recyclerViewSteps.setLayoutManager(new LinearLayoutManager(this));
+        btnBack = findViewById(R.id.btn_back); // Encuentra el botón
 
+        // Configura el listener para el botón de regreso
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish(); // Termina la actividad actual y vuelve a la anterior
+            }
+        });
     }
 
 
@@ -67,6 +79,8 @@ ApiManager manager;
 
         }
     };
+
+
     private final InstructionsRecipes instructionsRecipes = new InstructionsRecipes() {
         @Override
         public void steps(List<Instructions> response, String message) {
@@ -81,5 +95,7 @@ ApiManager manager;
         public void error(String message) {
 
         }
+
     };
+
 }

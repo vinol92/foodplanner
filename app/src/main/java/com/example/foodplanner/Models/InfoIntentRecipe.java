@@ -42,4 +42,5 @@ public class InfoIntentRecipe {
     public String summary;
     public WinePairing winePairing;
 
+
 }
