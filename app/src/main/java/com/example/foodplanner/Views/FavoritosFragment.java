@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.foodplanner.Interfaces.RecipeClickIntent;
+import com.example.foodplanner.Models.FavoriteRecipeAdapter;
 import com.example.foodplanner.Models.Recipe;
 import com.example.foodplanner.Models.RecipeAdapter;
 import com.example.foodplanner.Models.Stock;
@@ -35,7 +36,7 @@ public class FavoritosFragment extends Fragment {
     private TextView textFoodName, textFoodAmount;
 
     private RecyclerView recyclerView;
-    RecipeAdapter recipeAdapter;
+    FavoriteRecipeAdapter recipeAdapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -45,7 +46,6 @@ public class FavoritosFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
 
         obtainRecipes("Pepe");
         return view;
@@ -75,7 +75,7 @@ public class FavoritosFragment extends Fragment {
 
                         recipeList.add(recipe);
                     }
-                    recipeAdapter = new RecipeAdapter(recipeList,getContext(),recipeClickIntent);
+                    recipeAdapter = new FavoriteRecipeAdapter(recipeList,getContext(),recipeClickIntent);
                     recyclerView.setAdapter(recipeAdapter);
                 }
 

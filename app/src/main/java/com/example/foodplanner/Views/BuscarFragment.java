@@ -16,9 +16,15 @@ import android.widget.EditText;
 import com.example.foodplanner.Interfaces.RecipeClickIntent;
 import com.example.foodplanner.Interfaces.SearchRecipe;
 import com.example.foodplanner.Models.ApiManager;
+import com.example.foodplanner.Models.FavoriteRecipeAdapter;
 import com.example.foodplanner.Models.RandomRecipesAPI;
 import com.example.foodplanner.Models.RecipeAdapter;
 import com.example.foodplanner.R;
+import com.google.mlkit.common.model.DownloadConditions;
+import com.google.mlkit.nl.translate.TranslateLanguage;
+import com.google.mlkit.nl.translate.Translation;
+import com.google.mlkit.nl.translate.Translator;
+import com.google.mlkit.nl.translate.TranslatorOptions;
 
 
 public class BuscarFragment extends Fragment {
@@ -53,7 +59,7 @@ public class BuscarFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String query = editTextQuery.getText().toString().trim();
-                apiManager.getRandomRecipes(searchRecipe,query);
+                translateRecipeQuery(query);
             }
         });
 
@@ -82,4 +88,40 @@ public class BuscarFragment extends Fragment {
             startActivity(new Intent(getActivity(), RecipeInfoActivity.class).putExtra("id",id));
         }
     };
+
+
+    private void translateRecipeQuery(String query) {
+        // Configure the options of the translator
+        TranslatorOptions options =
+                new TranslatorOptions.Builder()
+                        .setSourceLanguage(TranslateLanguage.SPANISH)
+                        .setTargetLanguage(TranslateLanguage.ENGLISH)
+                        .build();
+
+        Translator spanishEnglishTraductor = Translation.getClient(options);
+
+        DownloadConditions conditions = new DownloadConditions.Builder().build();
+
+
+        spanishEnglishTraductor.downloadModelIfNeeded(conditions)
+                .addOnSuccessListener(
+                        ignored -> {
+                            // Translates the query.
+                            spanishEnglishTraductor.translate(query)
+                                    .addOnSuccessListener(
+                                            translatedText -> {
+
+                                                    System.out.println(translatedText);
+                                                apiManager.getRandomRecipes(searchRecipe,translatedText);
+
+                                                spanishEnglishTraductor.close();
+                                            })
+                                    .addOnFailureListener(
+                                            e -> {
+                                                spanishEnglishTraductor.close();
+                                            });
+                        });
+    }
+
+
     }
