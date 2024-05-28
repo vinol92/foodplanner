@@ -35,7 +35,17 @@ public class RegistroNutri extends AppCompatActivity {
         etApellido = findViewById(R.id.inapellido);
         etColegiado = findViewById(R.id.incolegiado);
         etDNI = findViewById(R.id.indni);
+        /*
+        String nombre;
+        String apellido;
+        String colegiado;
+        String dni;
 
+        nombre= String.valueOf(etNombre.getText());
+        apellido= String.valueOf(etApellido.getText());
+        colegiado= String.valueOf(etColegiado.getText());
+        dni= String.valueOf(etDNI.getText());
+        */
         // Configurar clic del botón "Atrás"
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +71,8 @@ public class RegistroNutri extends AppCompatActivity {
 
                     // Crear un Intent para ir a la actividad RegistroNutri2
                     Intent intent = new Intent(RegistroNutri.this, RegistroNutri2.class);
+                   /* String []todoaString = {nombre,apellido,colegiado,dni};
+                    intent.putExtra("todo",todoaString);*/
                     startActivity(intent); // Iniciar la actividad RegistroNutri2
                 }
             }

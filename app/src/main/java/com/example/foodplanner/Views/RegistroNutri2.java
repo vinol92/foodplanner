@@ -20,8 +20,17 @@ public class RegistroNutri2 extends AppCompatActivity {
     public static String nombre;
     public static String apellido;
     public static String colegiado;
+
+    public static String usuario;
+    public static String telefono;
+    public static String email;
+    public static String contra;
     public static String dni;
-    private EditText inUser, inTelefono, inEmail, inContra, inContra2;
+    private EditText inUser;
+    private EditText inTelefono;
+    private EditText inEmail;
+    private EditText inContra;
+    private EditText inContra2;
     private Button btnSiguiente;
 
     @Override
@@ -39,6 +48,16 @@ public class RegistroNutri2 extends AppCompatActivity {
         inEmail = findViewById(R.id.inemail);
         inContra = findViewById(R.id.incontra);
         inContra2 = findViewById(R.id.incontra2);
+
+        nombre= String.valueOf(inUser.getText());
+        apellido= String.valueOf(inUser.getText());
+        colegiado= String.valueOf(inUser.getText());
+        dni= String.valueOf(inUser.getText());
+
+        usuario= String.valueOf(inUser.getText());
+        telefono= String.valueOf(inTelefono.getText());
+        email= String.valueOf(inEmail.getText());
+        contra = String.valueOf(inContra.getText());
 
         // Configurar clic del botón "Atrás"
         btnBack.setOnClickListener(new View.OnClickListener() {
@@ -63,6 +82,15 @@ public class RegistroNutri2 extends AppCompatActivity {
                 } else {
                     // Crear un Intent para ir a la actividad Bienvenida
                     Intent intent = new Intent(RegistroNutri2.this, Bienvenida.class);
+                  //  String []todoaString = {nombre,apellido,colegiado,dni,usuario,telefono,email,contra};
+                    intent.putExtra("nombre",nombre);
+                    intent.putExtra("apellido",apellido);
+                    intent.putExtra("colegiado",colegiado);
+                    intent.putExtra("dni",dni);
+                    intent.putExtra("usuario",usuario);
+                    intent.putExtra("telefono",telefono);
+                    intent.putExtra("email",email);
+                    intent.putExtra("contra",contra);
                     startActivity(intent); // Iniciar la actividad Bienvenida
                 }
             }

@@ -55,7 +55,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
 
         translateRecipeTitle(recipeList.get(position).getTitle(), holder); //Translate to spanish the name of the Recipe
         Picasso.get().load(recipeList.get(position).image).into(holder.imageFood); //This is a library to load images.
-        holder.saveIcon.setImageResource(R.drawable.lector);
+        holder.saveIcon.setImageResource(R.drawable.estrella);
         //If the name of the Recipe is open, it goes to the intent of the recipe selected
         holder.recipeTitle.setOnClickListener(new View.OnClickListener() {
             @Override
