@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,223 +8,186 @@
     android:background="@color/withegreen"
     tools:context=".Views.PerfilFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <ImageButton
             android:id="@+id/imageButton2"
             android:layout_width="121dp"
             android:layout_height="123dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="32dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/anadirfoto"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.067" />
+            android:src="@drawable/anadirfoto" />
 
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="wrap_content"
-            android:layout_height="41dp"
-            android:layout_marginStart="27dp"
-            android:layout_marginEnd="274dp"
-            android:gravity="center_vertical"
-            android:text="Tipo Suscripcion"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            android:textStyle="bold"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
 
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.6"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.561" />
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="0dp"
+                android:layout_height="41dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Tipo Suscripcion"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="75dp"
-            android:layout_height="41dp"
-            android:gravity="center_vertical"
-            android:text="Nombre"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.08"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.262" />
+            <EditText
+                android:id="@+id/intextsub"
+                android:layout_width="0dp"
+                android:layout_height="41dp"
+                android:layout_weight="1"
+                android:hint="Suscripción"
+                android:text="normal"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:inputType="none" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="wrap_content"
-            android:layout_height="41dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="321dp"
-            android:gravity="center_vertical"
-            android:text="Apellidos"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.339" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
 
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="41dp"
-            android:layout_marginStart="29dp"
-            android:layout_marginEnd="332dp"
-            android:gravity="center_vertical"
-            android:text="Usuario"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            android:textStyle="bold"
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="0dp"
+                android:layout_height="41dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Nombre"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
 
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.414" />
+            <EditText
+                android:id="@+id/intextnombre"
+                android:layout_width="0dp"
+                android:layout_height="41dp"
+                android:layout_weight="1"
+                android:hint="Nombre" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="wrap_content"
-            android:layout_height="41dp"
-            android:layout_marginStart="27dp"
-            android:layout_marginEnd="299dp"
-            android:gravity="center_vertical"
-            android:text="Alergias o \nIntolerancias"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            android:textStyle="bold"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
 
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.75"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.637" />
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="0dp"
+                android:layout_height="41dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Apellidos"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="wrap_content"
-            android:layout_height="41dp"
-            android:layout_marginStart="27dp"
-            android:layout_marginEnd="348dp"
-            android:gravity="center_vertical"
-            android:text="Email"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            android:textStyle="bold"
+            <EditText
+                android:id="@+id/intextapellido"
+                android:layout_width="0dp"
+                android:layout_height="41dp"
+                android:layout_weight="1"
+                android:hint="Apellidos" />
+        </LinearLayout>
 
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.49" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="0dp"
+                android:layout_height="41dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Usuario"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/intextusuario"
+                android:layout_width="0dp"
+                android:layout_height="41dp"
+                android:layout_weight="1"
+                android:hint="Usuario" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="0dp"
+                android:layout_height="41dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Email"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/intextemail"
+                android:layout_width="0dp"
+                android:layout_height="41dp"
+                android:layout_weight="1"
+                android:hint="Email" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Alergias o \nIntolerancias"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/intextalergia"
+                android:layout_width="0dp"
+                android:layout_height="108dp"
+                android:layout_weight="1"
+                android:hint="Alergias"
+                android:inputType="textMultiLine"
+                android:scrollbars="vertical" />
+        </LinearLayout>
 
         <Button
             android:id="@+id/guardar"
             android:layout_width="210dp"
             android:layout_height="41dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
             android:background="@drawable/botonesstilo"
             android:text="Guardar Cambios"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="20sp" />
 
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.873" />
-
-        <EditText
-            android:id="@+id/intextnombre"
-            android:layout_width="240dp"
-            android:layout_height="41dp"
-            android:layout_marginStart="42dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="26dp"
-            android:hint="Nombre"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/textView6"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
-
-        <EditText
-            android:id="@+id/intextapellido"
-            android:layout_width="240dp"
-            android:layout_height="41dp"
-            android:layout_marginStart="55dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="26dp"
-            android:hint="Apellidos"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView7"
-            app:layout_constraintTop_toBottomOf="@+id/intextnombre" />
-
-        <EditText
-            android:id="@+id/intextusuario"
-            android:layout_width="240dp"
-            android:layout_height="41dp"
-            android:layout_marginStart="66dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="26dp"
-            android:hint="Usuario"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/textView8"
-            app:layout_constraintTop_toBottomOf="@+id/intextapellido" />
-
-        <EditText
-            android:id="@+id/intextsub"
-            android:layout_width="240dp"
-            android:layout_height="41dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="26dp"
-            android:hint="Suscripción"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.333"
-            app:layout_constraintStart_toEndOf="@+id/textView10"
-            app:layout_constraintTop_toBottomOf="@+id/intextemail" />
-
-        <EditText
-            android:id="@+id/intextalergia"
-
-            android:layout_width="240dp"
-            android:layout_height="41dp"
-            android:layout_marginTop="20dp"
-            android:hint="Alergias"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.586"
-            app:layout_constraintStart_toEndOf="@+id/textView9"
-            app:layout_constraintTop_toBottomOf="@+id/intextsub" />
-
-        <EditText
-            android:id="@+id/intextemail"
-            android:layout_width="240dp"
-            android:layout_height="41dp"
-            android:layout_marginStart="82dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="26dp"
-            android:hint="Email"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/textView11"
-            app:layout_constraintTop_toBottomOf="@+id/intextusuario" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+    </LinearLayout>
+</ScrollView>

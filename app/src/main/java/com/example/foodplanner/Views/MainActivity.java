@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
                     if ((userInput.equals(storedUsername) || userInput.equals(storedEmail)) && storedPassword != null && storedPassword.equals(password)) {
                         userFound = true;
                         Intent intent = new Intent(MainActivity.this, Inicio.class);
+                        intent.putExtra("username", userInput); // Pasar el nombre de usuario como extra
                         startActivity(intent);
                         finish(); // Finaliza la actividad actual para que no esté en la pila de retroceso
                         break;
@@ -98,4 +99,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }

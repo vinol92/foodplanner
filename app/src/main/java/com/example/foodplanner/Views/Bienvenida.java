@@ -108,8 +108,9 @@ public class Bienvenida extends AppCompatActivity {
                         // Datos guardados exitosamente
                         Toast.makeText(Bienvenida.this, "Usuario registrado correctamente", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(Bienvenida.this, Inicio.class);
+                        intent.putExtra("username", usuario); // Pasar el nombre de usuario como extra
                         startActivity(intent);
-                        finish(); // Finalizar la actividad actual para que no esté en la pila de retroceso
+                        finish(); // Finaliza la actividad actual para que no esté en la pila de retroceso
                     } else {
                         // Error al guardar los datos
                         Toast.makeText(Bienvenida.this, "Error al registrar el usuario", Toast.LENGTH_SHORT).show();
