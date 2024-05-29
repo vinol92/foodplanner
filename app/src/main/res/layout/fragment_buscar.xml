@@ -7,41 +7,39 @@
     android:layout_height="match_parent"
     tools:context=".Views.BuscarFragment">
 
-
-    <EditText
-        android:id="@+id/editTextQuery"
+    <LinearLayout
+        android:id="@+id/searchContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="109dp"
-        android:hint="Escribe tus alimentos" />
+        android:layout_marginTop="70dp"
+        android:orientation="horizontal"
+        android:padding="16dp">
 
-    <Button
-        android:id="@+id/buttonSend"
-        android:layout_width="wrap_content"
-        android:layout_height="37dp"
-        android:layout_below="@id/editTextQuery"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="146dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="137dp"
-        android:textColor="@color/white"
-        android:background="@drawable/botonesstilo"
-        android:text="Buscar" />
+    <EditText
+        android:id="@+id/editTextQuery"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:hint="Escribe tus alimentos"
+        android:inputType="text" />
 
-    <androidx.recyclerview.widget.RecyclerView
+        <Button
+            android:id="@+id/buttonSend"
+            android:layout_width="70dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/botonesstilo"
+            android:text="Buscar"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/buttonSend"
+        android:layout_below="@id/searchContainer"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="26dp"
         android:scrollbars="vertical" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewResponse"
-        android:layout_below="@id/recyclerView"/>
-</RelativeLayout>
+    </RelativeLayout>

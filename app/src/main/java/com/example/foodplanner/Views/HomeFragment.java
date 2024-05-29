@@ -32,6 +32,8 @@ public class HomeFragment extends Fragment {
 
     private RecyclerView recyclerView;
     StockAdapter stockAdapter;
+
+    String usuarioiniciado;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -42,9 +44,13 @@ public class HomeFragment extends Fragment {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        if (getArguments() != null) {
+            usuarioiniciado = getArguments().getString("usuario");
+        }
 
-        obtainStock("Pepe");
+        obtainStock(usuarioiniciado);
         return view;
+
 
     }
 
@@ -60,31 +66,24 @@ public class HomeFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 List<Stock> stockList = new ArrayList<>();
 
-                if (dataSnapshot.exists()) {
+                if (dataSnapshot.exists() && dataSnapshot.hasChildren()) {
                     for (DataSnapshot foodSnapshot : dataSnapshot.getChildren()) {
                         String foodName = foodSnapshot.getKey();
                         Map<String, Object> foodDetails = (Map<String, Object>) foodSnapshot.getValue();
                         Stock stock = new Stock();
                         stock.setName(foodName);
 
-                        Long amountLong = (Long) foodDetails.get("Amount");
+                        Long amountLong = (Long) foodDetails.get("amount");
                         int amount = amountLong.intValue();
                         stock.setAmount(amount);
 
-                        Long caloriesLong = (Long) foodDetails.get("Calories");
-                        int calories = caloriesLong.intValue();
-                        stock.setCalories(calories);
-
                         stockList.add(stock);
                     }
-                    stockAdapter = new StockAdapter(stockList);
+                    stockAdapter = new StockAdapter(stockList, usuarioiniciado);
                     recyclerView.setAdapter(stockAdapter);
-                }
+                } else {
 
 
-             else {
-                    // Manejar el caso en el que el usuario no tenga stock de alimentos
-                    textFoodName.setText("El usuario " + userName + " no tiene stock de alimentos.");
                 }
             }
 
@@ -96,4 +95,5 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
 }

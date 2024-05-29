@@ -23,9 +23,11 @@ import java.util.List;
 public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder> {
 
     private List<Stock> stockList;
-    public StockAdapter(List<Stock> stockList) {
-        this.stockList = stockList;
 
+    String userName;
+    public StockAdapter(List<Stock> stockList, String userName) {
+        this.stockList = stockList;
+        this.userName = userName;
     }
     @NonNull
     @Override
@@ -50,7 +52,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder> 
 
             int amount = stock.getAmount();
              amount++;
-            addStockToFirebase(stock,"pepe",holder,amount);
+            addStockToFirebase(stock,userName,holder,amount);
             }
         });
 
@@ -60,7 +62,8 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder> 
 
                 int amount = stock.getAmount();
                 amount--;
-                deleteStockToFirebase(stock,"pepe",holder,amount);
+                deleteStockToFirebase(stock,userName,holder,amount);
+
             }
         });
     }
@@ -104,20 +107,35 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder> 
     private void deleteStockToFirebase(Stock stock, String userName, ViewHolder holder, int amount) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Users").child(userName).child("Stock");
+
         stock.setAmount(amount);
-        myRef.child(stock.getName()).setValue(stock)
-                .addOnCompleteListener(new OnCompleteListener<Void>(){
-                    @Override
-                    public void onComplete(@android.support.annotation.NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            holder.textViewQuantity.setText(String.valueOf(stock.getAmount()));
+        if (amount <= 0) {
+            myRef.child(stock.getName()).removeValue()
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@android.support.annotation.NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                int position = holder.getAdapterPosition();
+                                stockList.remove(position);
+                                notifyItemRemoved(position);
 
+                            } else {
 
-                        } else {
-
+                            }
                         }
-                    }
-                });
+                    });
+        } else {
+            myRef.child(stock.getName()).setValue(stock)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@android.support.annotation.NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                holder.textViewQuantity.setText(String.valueOf(stock.getAmount()));
+                            } else {
+                            }
+                        }
+                    });
+        }
     }
 
 }

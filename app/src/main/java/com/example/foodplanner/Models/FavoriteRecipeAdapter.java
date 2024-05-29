@@ -33,6 +33,7 @@ public class FavoriteRecipeAdapter  extends RecyclerView.Adapter<FavoriteRecipeA
     Context context;
 
     RecipeClickIntent listenerRecipe;
+    String usuarioiniciado;
     @NonNull
     @Override
     public FavoriteRecipeAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -40,10 +41,11 @@ public class FavoriteRecipeAdapter  extends RecyclerView.Adapter<FavoriteRecipeA
         return new FavoriteRecipeAdapter.ViewHolder(v);
 
     }
-    public FavoriteRecipeAdapter(List<Recipe> recipeList, Context context, RecipeClickIntent listenerRecipe) {
+    public FavoriteRecipeAdapter(List<Recipe> recipeList, Context context, RecipeClickIntent listenerRecipe, String usuarioiniciado) {
         this.recipeList = recipeList;
         this.context = context;
         this.listenerRecipe = listenerRecipe;
+        this.usuarioiniciado = usuarioiniciado;
     }
     @Override
     public void onBindViewHolder(@NonNull FavoriteRecipeAdapter.ViewHolder holder, int position) {

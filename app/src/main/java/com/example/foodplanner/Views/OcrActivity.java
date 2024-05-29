@@ -28,6 +28,7 @@ import com.google.android.gms.vision.Detector;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -35,15 +36,26 @@ import java.util.List;
 public class OcrActivity extends AppCompatActivity {
     SurfaceView cameraView;
     TextView textView;
-    Button button;
     CameraSource cameraSource;
+    Button button;
     final int RequestCameraPermissionID = 1001;
-    String detectedText;
+    private String detectedText;
+    private List<String> productNames = new ArrayList<>(Arrays.asList(
+            "leche", "pan", "arroz", "huevos", "azúcar", "sal", "pimienta", "aceite de oliva",
+            "mantequilla", "harina", "pollo", "carne de res", "pescado", "tomates", "cebollas",
+            "ajo", "zanahorias", "patatas", "limones", "naranjas", "manzanas", "plátanos",
+            "uvas", "espinacas", "lechuga", "brócoli", "guisantes", "judías verdes", "maíz",
+            "champiñones", "pimientos", "calabacín", "berenjenas", "queso", "yogur", "miel",
+            "vinagre", "mostaza", "ketchup", "salsa de soja", "curry", "canela", "vainilla",
+            "chocolate", "nueces", "almendras", "pasta", "cuscús", "lentejas", "garbanzos",
+            "tocino", "jamón"
+    ));
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ocr);
 
+        String userName = getIntent().getStringExtra("username");
 
 
         cameraView = (SurfaceView) findViewById(R.id.surfaceView);
@@ -53,15 +65,23 @@ public class OcrActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (detectedText != null && !detectedText.isEmpty()) {
-                    String userName = "Pepe";
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference myRef = database.getReference("Users").child(userName);
 
-                    myRef.child("Stock").setValue(detectedText);
+                    String[] words = detectedText.split("\\s+");
+                    for (String word : words) {
+
+                        if (!productNames.contains(word.toLowerCase())) {
+                            productNames.add(word.toLowerCase());
+                        }
+                        myRef.child("Stock").setValue(detectedText);
+                  }
                     Toast.makeText(getApplicationContext(), "Datos insertados en la base de datos.", Toast.LENGTH_LONG).show();
                 }
             }
         });
+
+
         TextRecognizer textRecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
         if (!textRecognizer.isOperational()) {
             Toast.makeText(getApplicationContext(), "Los servicios de Google Play no estÃ¡n disponibles.", Toast.LENGTH_LONG).show();
@@ -134,7 +154,7 @@ public class OcrActivity extends AppCompatActivity {
                                 for (TextBlock textBlock : textBlocks) {
                                     stringBuilder.append(textBlock.getValue());
                                     stringBuilder.append("\n");
-                                        detectedText = textBlock.getValue();
+                                    detectedText = textBlock.getValue();
                                 }
                                 textView.setText(stringBuilder.toString());
                             }

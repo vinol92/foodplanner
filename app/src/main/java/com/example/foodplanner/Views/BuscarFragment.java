@@ -38,6 +38,7 @@ public class BuscarFragment extends Fragment {
     RecipeAdapter recipeAdapter;
 
     SearchRecipe recipeRecylcerView;
+    private String usuarioiniciado;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,6 +55,10 @@ public class BuscarFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         apiManager = new ApiManager(getContext());
 
+
+        if (getArguments() != null) {
+            usuarioiniciado = getArguments().getString("usuario");
+        }
         //When this button is pressed, it gets the text of the query and calls the ApiManager class to getRandomRecipes
         buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +75,7 @@ public class BuscarFragment extends Fragment {
     private final SearchRecipe searchRecipe = new SearchRecipe() {
         @Override
         public void search(RandomRecipesAPI response, String message) {
-            recipeAdapter = new RecipeAdapter(response.recipes, getContext(), recipeClickIntent);
+            recipeAdapter = new RecipeAdapter(response.recipes, getContext(), recipeClickIntent,usuarioiniciado);
             recyclerView.setAdapter(recipeAdapter);
         }
 

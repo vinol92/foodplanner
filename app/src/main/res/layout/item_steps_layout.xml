@@ -5,28 +5,23 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <TextView
-        android:id="@+id/step"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="Paso 1"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:gravity="center"/>
+
 
     <TextView
         android:id="@+id/ingredients"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="Equipments"
+        android:text="Instructions"
         android:textSize="18sp"
         android:textStyle="bold"
         android:gravity="center"/>
 
 
-
+<androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/recycler_instruction_steps"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"/>
 
 
 </LinearLayout>

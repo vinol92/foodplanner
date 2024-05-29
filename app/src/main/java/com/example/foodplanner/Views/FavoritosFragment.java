@@ -37,6 +37,7 @@ public class FavoritosFragment extends Fragment {
 
     private RecyclerView recyclerView;
     FavoriteRecipeAdapter recipeAdapter;
+    String usuarioiniciado;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -46,10 +47,11 @@ public class FavoritosFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        obtainRecipes("Pepe");
+        if (getArguments() != null) {
+            usuarioiniciado = getArguments().getString("usuario");
+        }
+        obtainRecipes(usuarioiniciado);
         return view;
-
 
     }
 
@@ -71,18 +73,13 @@ public class FavoritosFragment extends Fragment {
                         recipe.setTitle(foodName);
                         String image = foodDetails.get("image").toString();
                         recipe.setImage(image);
-
-
                         recipeList.add(recipe);
                     }
-                    recipeAdapter = new FavoriteRecipeAdapter(recipeList,getContext(),recipeClickIntent);
+                    recipeAdapter = new FavoriteRecipeAdapter(recipeList,getContext(),recipeClickIntent,usuarioiniciado);
                     recyclerView.setAdapter(recipeAdapter);
                 }
 
-
                 else {
-                    // Manejar el caso en el que el usuario no tenga stock de alimentos
-                    textFoodName.setText("El usuario " + userName + " no tiene stock de alimentos.");
                 }
             }
 

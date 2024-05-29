@@ -15,13 +15,13 @@ import java.util.List;
 
 public class StepsAdapter  extends RecyclerView.Adapter<StepsAdapter.ViewHolder>{
 
-    List<Instructions> instructionList;
     Context context;
+    List<Instructions> instructionList;
 
 
-    public StepsAdapter(Context context, List<Instructions> instructionList) {
-        this.context = context;
+    public StepsAdapter(Context context,  List<Instructions> instructionList) {
         this.instructionList = instructionList;
+        this.context = context;
     }
 
 
@@ -34,23 +34,26 @@ public class StepsAdapter  extends RecyclerView.Adapter<StepsAdapter.ViewHolder>
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    holder.ingredients.setText(instructionList.get(position).name);
+    holder.recycler_instruction_steps.setHasFixedSize(true);
 
-        holder.step.setText(instructionList.get(position).name);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+    return instructionList.size();
+
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView step,ingredients;
+        TextView ingredients;
 
-            RecyclerView stepsRecyclerView;
+        RecyclerView recycler_instruction_steps;
+
         public ViewHolder(View v) {
             super(v);
-            step = v.findViewById(R.id.step);
             ingredients = v.findViewById(R.id.ingredients);
+            recycler_instruction_steps = v.findViewById(R.id.recycler_instruction_steps);
         }
     }
 }

@@ -34,12 +34,14 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
 
     Context context;
 
+    String userName;
     RecipeClickIntent listenerRecipe;
 
-    public RecipeAdapter(List<Recipe> recipeList, Context context, RecipeClickIntent listenerRecipe) {
+    public RecipeAdapter(List<Recipe> recipeList, Context context, RecipeClickIntent listenerRecipe, String userName) {
         this.recipeList = recipeList;
         this.context = context;
         this.listenerRecipe = listenerRecipe;
+        this.userName = userName;
     }
 
 
@@ -69,7 +71,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             @Override
             public void onClick(View v) {
 
-                String userName = "Pepe";
                 saveRecipeToFirebase(recipe,userName);
             }
         });

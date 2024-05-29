@@ -47,10 +47,8 @@ public class Inicio extends AppCompatActivity {
                 Bundle args = new Bundle();
                 args.putString("usuario", username);
                 perfilFragment.setArguments(args);
-
-                // Reemplaza el contenido del contenedor con el fragmento PerfilFragment
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.infousu2, perfilFragment) // Reemplaza "infousu2" con el ID real de tu FrameLayout en inicio.xml
+                        .replace(R.id.infousu2, perfilFragment)
                         .commit();
             }
         });
@@ -58,9 +56,16 @@ public class Inicio extends AppCompatActivity {
         btnLupa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                BuscarFragment buscarFragment = new BuscarFragment();
+                Bundle args = new Bundle();
+                args.putString("usuario", username);
+                buscarFragment.setArguments(args);
+
+                // Reemplaza el contenido del contenedor con el fragmento PerfilFragment
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.infousu2, new BuscarFragment())
+                        .replace(R.id.infousu2, buscarFragment)
                         .commit();
+
             }
         });
 
@@ -68,6 +73,7 @@ public class Inicio extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Inicio.this, OcrActivity.class);
+                intent.putExtra("username", username);
                 startActivity(intent);
             }
         });
@@ -75,8 +81,12 @@ public class Inicio extends AppCompatActivity {
         btnEstrella.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FavoritosFragment favoritosFragment = new FavoritosFragment();
+                Bundle args = new Bundle();
+                args.putString("usuario", username);
+                favoritosFragment.setArguments(args);
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.infousu2, new FavoritosFragment())
+                        .replace(R.id.infousu2, favoritosFragment)
                         .commit();
             }
         });
@@ -84,8 +94,12 @@ public class Inicio extends AppCompatActivity {
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                HomeFragment homeFragment = new HomeFragment();
+                Bundle args = new Bundle();
+                args.putString("usuario", username);
+                homeFragment.setArguments(args);
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.infousu2, new HomeFragment())
+                        .replace(R.id.infousu2, homeFragment)
                         .commit();
             }
         });

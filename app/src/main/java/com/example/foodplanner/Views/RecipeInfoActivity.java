@@ -25,6 +25,11 @@ import com.example.foodplanner.Models.Instructions;
 import com.example.foodplanner.Models.RecipeAdapter;
 import com.example.foodplanner.Models.StepsAdapter;
 import com.example.foodplanner.R;
+import com.google.mlkit.common.model.DownloadConditions;
+import com.google.mlkit.nl.translate.TranslateLanguage;
+import com.google.mlkit.nl.translate.Translation;
+import com.google.mlkit.nl.translate.Translator;
+import com.google.mlkit.nl.translate.TranslatorOptions;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -53,7 +58,7 @@ ApiManager manager;
         manager.getRecipesDetails(infoRecipes,id);
         manager.getRecipeSteps(instructionsRecipes, id);
         recyclerViewSteps.setLayoutManager(new LinearLayoutManager(this));
-        btnBack = findViewById(R.id.btn_back); // Encuentra el botón
+        btnBack = findViewById(R.id.btn_back);
 
         // Configura el listener para el botón de regreso
         btnBack.setOnClickListener(new View.OnClickListener() {
@@ -62,6 +67,7 @@ ApiManager manager;
                 finish(); // Termina la actividad actual y vuelve a la anterior
             }
         });
+
     }
 
 
@@ -69,9 +75,9 @@ ApiManager manager;
     private final InfoRecipes infoRecipes = new InfoRecipes() {
         @Override
         public void info(InfoIntentRecipe response, String message) {
-            textViewTitle.setText(response.title);
-            textViewInfo.setText(response.summary);
-            Picasso.get().load(response.image).into(imageViewFood);
+            translateRecipeQuery(response.title);
+            translateRecipeQuery2(response.summary);
+                Picasso.get().load(response.image).into(imageViewFood);
         }
 
         @Override
@@ -84,7 +90,6 @@ ApiManager manager;
     private final InstructionsRecipes instructionsRecipes = new InstructionsRecipes() {
         @Override
         public void steps(List<Instructions> response, String message) {
-            recyclerViewSteps.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
             stepsAdapter = new StepsAdapter(getApplicationContext(),response);
 
 
@@ -98,4 +103,66 @@ ApiManager manager;
 
     };
 
+    private void translateRecipeQuery(String query) {
+        // Configure the options of the translator
+        TranslatorOptions options =
+                new TranslatorOptions.Builder()
+                        .setSourceLanguage(TranslateLanguage.ENGLISH)
+                        .setTargetLanguage(TranslateLanguage.SPANISH)
+                        .build();
+
+        Translator englishSpanishTraductor = Translation.getClient(options);
+
+        DownloadConditions conditions = new DownloadConditions.Builder().build();
+
+
+        englishSpanishTraductor.downloadModelIfNeeded(conditions)
+                .addOnSuccessListener(
+                        ignored -> {
+                            // Translates the query.
+                            englishSpanishTraductor.translate(query)
+                                    .addOnSuccessListener(
+                                            translatedText -> {
+
+                                                textViewTitle.setText(translatedText);
+
+                                                englishSpanishTraductor.close();
+                                            })
+                                    .addOnFailureListener(
+                                            e -> {
+                                                englishSpanishTraductor.close();
+                                            });
+                        });
+    }
+    private void translateRecipeQuery2(String query) {
+        // Configure the options of the translator
+        TranslatorOptions options =
+                new TranslatorOptions.Builder()
+                        .setSourceLanguage(TranslateLanguage.ENGLISH)
+                        .setTargetLanguage(TranslateLanguage.SPANISH)
+                        .build();
+
+        Translator englishSpanishTraductor = Translation.getClient(options);
+
+        DownloadConditions conditions = new DownloadConditions.Builder().build();
+
+
+        englishSpanishTraductor.downloadModelIfNeeded(conditions)
+                .addOnSuccessListener(
+                        ignored -> {
+                            // Translates the query.
+                            englishSpanishTraductor.translate(query)
+                                    .addOnSuccessListener(
+                                            translatedText -> {
+
+                                                textViewInfo.setText(translatedText);
+
+                                                englishSpanishTraductor.close();
+                                            })
+                                    .addOnFailureListener(
+                                            e -> {
+                                                englishSpanishTraductor.close();
+                                            });
+                        });
+    }
 }
