@@ -41,6 +41,8 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     implementation(libs.firebase.database)
     implementation(libs.firebase.auth)
+    implementation(libs.play.services.vision.common)
+    implementation(libs.play.services.vision)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

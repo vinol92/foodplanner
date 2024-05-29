@@ -1,5 +1,6 @@
 package com.example.foodplanner.Views;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -44,9 +45,8 @@ public class Inicio extends AppCompatActivity {
         btnLector.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.infousu2, new OcrFragment()) // Reemplaza "frameLayoutContainer" con el ID real de tu FrameLayout en inicio.xml
-                        .commit();
+                Intent intent = new Intent(Inicio.this, OcrActivity.class);
+                startActivity(intent);
             }
         });
 
