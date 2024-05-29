@@ -29,7 +29,7 @@ public class Bienvenida extends AppCompatActivity {
     private String apellido;
     private String colegiado;
     private String dni;
-    private String usuario;  // Mantener este nombre aquí
+    private String usuario;
     private String telefono;
     private String email;
     private String contra;
@@ -54,10 +54,8 @@ public class Bienvenida extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
 
-
-        // Obtener datos de RegistroNutri y RegistroNutri2
+        // Obtener datos de RegistroNutri, RegistroNutri2, InfoUsuario, e InfoUsuario2
         Intent intent = getIntent();
-
         nombre = intent.getStringExtra("nombre");
         apellido = intent.getStringExtra("apellido");
         colegiado = intent.getStringExtra("colegiado");
@@ -66,8 +64,7 @@ public class Bienvenida extends AppCompatActivity {
         telefono = intent.getStringExtra("telefono");
         email = intent.getStringExtra("email");
         contra = intent.getStringExtra("contra");
-        System.out.println(nombre);
-        // Obtener datos de InfoUsuario2
+        tipousuario = intent.getStringExtra("tipousuario");
         alergias = intent.getStringArrayListExtra("alergias");
 
         // Configurar clic del botón "Atrás"
@@ -99,15 +96,13 @@ public class Bienvenida extends AppCompatActivity {
             tipousuario = "paciente";
             dni = "";
             colegiado = "";
-
         }
 
         // Crear objeto Usuario
         Usuario usuarioObj = new Usuario(nombre, apellido, colegiado, dni, usuario, telefono, email, contra, tipousuario, alergias);
-        Usuario usuario2 = new Usuario ("a","a","a","a","a","a","a","a","a",alergias);
 
         // Guardar los datos del usuario en Firebase
-        databaseReference.child("vin").setValue(usuario2)
+        databaseReference.child(usuario).setValue(usuarioObj)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         // Datos guardados exitosamente
@@ -120,7 +115,6 @@ public class Bienvenida extends AppCompatActivity {
                         Toast.makeText(Bienvenida.this, "Error al registrar el usuario", Toast.LENGTH_SHORT).show();
                     }
                 });
-
     }
 
     // Clase Usuario
@@ -134,7 +128,6 @@ public class Bienvenida extends AppCompatActivity {
         public String email;
         public String contra;
         public String tipousuario;
-
         public List<String> alergias;
 
         public Usuario() {
@@ -151,11 +144,47 @@ public class Bienvenida extends AppCompatActivity {
             this.email = email;
             this.contra = contra;
             this.tipousuario = tipousuario;
-
             this.alergias = alergias;
         }
+
         public String getNombre() {
             return nombre;
+        }
+
+        public String getApellido() {
+            return apellido;
+        }
+
+        public String getColegiado() {
+            return colegiado;
+        }
+
+        public String getDni() {
+            return dni;
+        }
+
+        public String getUsuario() {
+            return usuario;
+        }
+
+        public String getTelefono() {
+            return telefono;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public String getContra() {
+            return contra;
+        }
+
+        public String getTipousuario() {
+            return tipousuario;
+        }
+
+        public List<String> getAlergias() {
+            return alergias;
         }
     }
 }

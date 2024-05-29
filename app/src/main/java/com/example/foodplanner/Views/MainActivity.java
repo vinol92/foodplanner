@@ -22,8 +22,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
-Button registra, acceder;
-TextView inuss, inpass;
+    Button registra, acceder;
+    TextView inuss, inpass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,60 +35,67 @@ TextView inuss, inpass;
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        registra=(Button) findViewById(R.id.registra);
+
+        registra = findViewById(R.id.registra);
         inuss = findViewById(R.id.inuss);
         inpass = findViewById(R.id.inpass);
         acceder = findViewById(R.id.acceder);
+
         registra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent( MainActivity.this, Inicio.class);
+                Intent i = new Intent(MainActivity.this, Inicio.class);
                 startActivity(i);
             }
         });
+
         acceder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkusuario();
+                checkUsuario();
             }
         });
     }
 
-    private void checkusuario() {
+    private void checkUsuario() {
+        final String userInput = inuss.getText().toString().trim();
+        final String password = inpass.getText().toString().trim();
 
-     final String username = inuss.getText().toString().trim();
-     final String password = inpass.getText().toString().trim();
-
-        if (username.isEmpty() || password.isEmpty()) {
-            Toast.makeText(MainActivity.this, "Please enter username and password", Toast.LENGTH_SHORT).show();
+        if (userInput.isEmpty() || password.isEmpty()) {
+            Toast.makeText(MainActivity.this, "Por favor ingrese usuario y contraseña", Toast.LENGTH_SHORT).show();
             return;
         }
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Users");
 
-        myRef.child(username).addListenerForSingleValueEvent(new ValueEventListener() {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    Integer storedPassword = dataSnapshot.child("Password").getValue(Integer.class);
-                    int enteredPassword = Integer.parseInt(password);
+                boolean userFound = false;
 
-                    if (storedPassword != null && storedPassword.equals(enteredPassword)) {
-                        Intent i = new Intent( MainActivity.this, Inicio.class);
-                        startActivity(i);
-                    } else {
-                        Toast.makeText(MainActivity.this, "Contraseña incorrecta", Toast.LENGTH_SHORT).show();
+                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                    String storedUsername = userSnapshot.child("usuario").getValue(String.class);
+                    String storedEmail = userSnapshot.child("email").getValue(String.class);
+                    String storedPassword = userSnapshot.child("contra").getValue(String.class);
+
+                    if ((userInput.equals(storedUsername) || userInput.equals(storedEmail)) && storedPassword != null && storedPassword.equals(password)) {
+                        userFound = true;
+                        Intent intent = new Intent(MainActivity.this, Inicio.class);
+                        startActivity(intent);
+                        finish(); // Finaliza la actividad actual para que no esté en la pila de retroceso
+                        break;
                     }
-                } else {
-                    Toast.makeText(MainActivity.this, "No existe el usuario", Toast.LENGTH_SHORT).show();
+                }
+
+                if (!userFound) {
+                    Toast.makeText(MainActivity.this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(MainActivity.this, "Error en la base de datos: " + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
-
         });
     }
 }

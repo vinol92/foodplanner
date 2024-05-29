@@ -17,21 +17,17 @@ import com.example.foodplanner.R;
 
 public class RegistroNutri2 extends AppCompatActivity {
 
-    public static String nombre;
-    public static String apellido;
-    public static String colegiado;
-
-    public static String usuario;
-    public static String telefono;
-    public static String email;
-    public static String contra;
-    public static String dni;
     private EditText inUser;
     private EditText inTelefono;
     private EditText inEmail;
     private EditText inContra;
     private EditText inContra2;
     private Button btnSiguiente;
+
+    private String nombre;
+    private String apellido;
+    private String colegiado;
+    private String dni;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,23 +37,18 @@ public class RegistroNutri2 extends AppCompatActivity {
         // Inicializar vistas
         ImageButton btnBack = findViewById(R.id.btn_back);
         btnSiguiente = findViewById(R.id.siguiente);
-
-        // Obtener referencias de EditText
         inUser = findViewById(R.id.inuser);
         inTelefono = findViewById(R.id.intelefono);
         inEmail = findViewById(R.id.inemail);
         inContra = findViewById(R.id.incontra);
         inContra2 = findViewById(R.id.incontra2);
 
-        nombre= String.valueOf(inUser.getText());
-        apellido= String.valueOf(inUser.getText());
-        colegiado= String.valueOf(inUser.getText());
-        dni= String.valueOf(inUser.getText());
-
-        usuario= String.valueOf(inUser.getText());
-        telefono= String.valueOf(inTelefono.getText());
-        email= String.valueOf(inEmail.getText());
-        contra = String.valueOf(inContra.getText());
+        // Obtener datos de la actividad anterior
+        Intent intent = getIntent();
+        nombre = intent.getStringExtra("nombre");
+        apellido = intent.getStringExtra("apellido");
+        colegiado = intent.getStringExtra("colegiado");
+        dni = intent.getStringExtra("dni");
 
         // Configurar clic del botón "Atrás"
         btnBack.setOnClickListener(new View.OnClickListener() {
@@ -80,17 +71,23 @@ public class RegistroNutri2 extends AppCompatActivity {
                 } else if (!contraseñasCoinciden()) {
                     Toast.makeText(RegistroNutri2.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
                 } else {
+                    // Obtener los datos de los EditText
+                    String usuario = inUser.getText().toString().trim();
+                    String telefono = inTelefono.getText().toString().trim();
+                    String email = inEmail.getText().toString().trim();
+                    String contra = inContra.getText().toString().trim();
+
                     // Crear un Intent para ir a la actividad Bienvenida
                     Intent intent = new Intent(RegistroNutri2.this, Bienvenida.class);
-                  //  String []todoaString = {nombre,apellido,colegiado,dni,usuario,telefono,email,contra};
-                    intent.putExtra("nombre",nombre);
-                    intent.putExtra("apellido",apellido);
-                    intent.putExtra("colegiado",colegiado);
-                    intent.putExtra("dni",dni);
-                    intent.putExtra("usuario",usuario);
-                    intent.putExtra("telefono",telefono);
-                    intent.putExtra("email",email);
-                    intent.putExtra("contra",contra);
+                    intent.putExtra("nombre", nombre);
+                    intent.putExtra("apellido", apellido);
+                    intent.putExtra("colegiado", colegiado);
+                    intent.putExtra("dni", dni);
+                    intent.putExtra("usuario", usuario);
+                    intent.putExtra("telefono", telefono);
+                    intent.putExtra("email", email);
+                    intent.putExtra("contra", contra);
+
                     startActivity(intent); // Iniciar la actividad Bienvenida
                 }
             }

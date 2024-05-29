@@ -35,17 +35,7 @@ public class RegistroNutri extends AppCompatActivity {
         etApellido = findViewById(R.id.inapellido);
         etColegiado = findViewById(R.id.incolegiado);
         etDNI = findViewById(R.id.indni);
-        /*
-        String nombre;
-        String apellido;
-        String colegiado;
-        String dni;
 
-        nombre= String.valueOf(etNombre.getText());
-        apellido= String.valueOf(etApellido.getText());
-        colegiado= String.valueOf(etColegiado.getText());
-        dni= String.valueOf(etDNI.getText());
-        */
         // Configurar clic del botón "Atrás"
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,16 +53,15 @@ public class RegistroNutri extends AppCompatActivity {
                 if (mensajeError != null) {
                     Toast.makeText(RegistroNutri.this, mensajeError, Toast.LENGTH_SHORT).show();
                 } else {
-                    // Guardar los datos en variables estáticas
-                    RegistroNutri2.nombre = etNombre.getText().toString().trim();
-                    RegistroNutri2.apellido = etApellido.getText().toString().trim();
-                    RegistroNutri2.colegiado = etColegiado.getText().toString().trim();
-                    RegistroNutri2.dni = etDNI.getText().toString().trim();
-
                     // Crear un Intent para ir a la actividad RegistroNutri2
                     Intent intent = new Intent(RegistroNutri.this, RegistroNutri2.class);
-                   /* String []todoaString = {nombre,apellido,colegiado,dni};
-                    intent.putExtra("todo",todoaString);*/
+
+                    // Pasar los datos a través del Intent
+                    intent.putExtra("nombre", etNombre.getText().toString().trim());
+                    intent.putExtra("apellido", etApellido.getText().toString().trim());
+                    intent.putExtra("colegiado", etColegiado.getText().toString().trim());
+                    intent.putExtra("dni", etDNI.getText().toString().trim());
+
                     startActivity(intent); // Iniciar la actividad RegistroNutri2
                 }
             }

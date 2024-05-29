@@ -18,11 +18,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InfoUsuario2 extends AppCompatActivity {
-    public static String nombre;
-    public static String apellido;
-    public static String usuario;
-    public static String email;
-    public static String contra;
+
+    private String nombre;
+    private String apellido;
+    private String usuario;
+    private String email;
+    private String contra;
 
     private ImageButton btnBack;
     private Button btnSiguiente;
@@ -31,7 +32,6 @@ public class InfoUsuario2 extends AppCompatActivity {
     private List<EditText> editTexts = new ArrayList<>();
     private CheckBox vegano, grasa, lacteo, azucar, pescetariano, gluten, vegetariano;
     private List<String> alergias = new ArrayList<>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +52,14 @@ public class InfoUsuario2 extends AppCompatActivity {
         gluten = findViewById(R.id.gluten);
         vegetariano = findViewById(R.id.vegetariano);
 
+        // Obtener datos de la actividad anterior
+        Intent intent = getIntent();
+        nombre = intent.getStringExtra("nombre");
+        apellido = intent.getStringExtra("apellido");
+        usuario = intent.getStringExtra("usuario");
+        email = intent.getStringExtra("email");
+        contra = intent.getStringExtra("contra");
+
         // Configurar clic del botón "Atrás"
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +75,12 @@ public class InfoUsuario2 extends AppCompatActivity {
                 guardarAlergias();
                 // Crear un Intent para ir a la actividad Bienvenida
                 Intent intent = new Intent(InfoUsuario2.this, Bienvenida.class);
-                // Pasar la lista de alergias
+                // Pasar los datos del usuario y la lista de alergias
+                intent.putExtra("nombre", nombre);
+                intent.putExtra("apellido", apellido);
+                intent.putExtra("usuario", usuario);
+                intent.putExtra("email", email);
+                intent.putExtra("contra", contra);
                 intent.putStringArrayListExtra("alergias", (ArrayList<String>) alergias);
                 startActivity(intent); // Iniciar la actividad Bienvenida
             }
@@ -95,6 +108,7 @@ public class InfoUsuario2 extends AppCompatActivity {
         containerAlergias.addView(editText);
         editTexts.add(editText);
     }
+
     // Método para guardar los valores de los CheckBox y EditText en la lista de alergias
     private void guardarAlergias() {
         alergias.clear(); // Limpiar la lista antes de agregar nuevos valores
