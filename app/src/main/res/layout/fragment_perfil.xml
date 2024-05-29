@@ -48,6 +48,8 @@
                 android:hint="Suscripción"
                 android:text="normal"
                 android:focusable="false"
+                android:textColor="@color/black"
+
                 android:focusableInTouchMode="false"
                 android:inputType="none" />
         </LinearLayout>
@@ -73,6 +75,8 @@
                 android:layout_width="0dp"
                 android:layout_height="41dp"
                 android:layout_weight="1"
+                android:textColor="@color/black"
+
                 android:hint="Nombre" />
         </LinearLayout>
 
@@ -98,6 +102,8 @@
                 android:layout_width="0dp"
                 android:layout_height="41dp"
                 android:layout_weight="1"
+                android:textColor="@color/black"
+
                 android:hint="Apellidos" />
         </LinearLayout>
 
@@ -123,6 +129,8 @@
                 android:layout_width="0dp"
                 android:layout_height="41dp"
                 android:layout_weight="1"
+                android:textColor="@color/black"
+
                 android:hint="Usuario" />
         </LinearLayout>
 
@@ -155,6 +163,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:textColor="@color/black"
+
             android:layout_marginTop="20dp">
 
             <TextView
@@ -174,6 +184,8 @@
                 android:layout_height="108dp"
                 android:layout_weight="1"
                 android:hint="Alergias"
+                android:textColor="@color/black"
+
                 android:inputType="textMultiLine"
                 android:scrollbars="vertical" />
         </LinearLayout>
@@ -181,9 +193,10 @@
         <Button
             android:id="@+id/guardar"
             android:layout_width="210dp"
-            android:layout_height="41dp"
+            android:layout_height="46dp"
             android:layout_gravity="center"
             android:layout_marginTop="40dp"
+            android:textAlignment="center"
             android:background="@drawable/botonesstilo"
             android:text="Guardar Cambios"
             android:textColor="@color/white"

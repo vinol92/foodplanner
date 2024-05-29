@@ -36,8 +36,8 @@
 
     <Button
         android:id="@+id/recuperar"
-        android:layout_width="257dp"
-        android:layout_height="28dp"
+        android:layout_width="271dp"
+        android:layout_height="45dp"
         android:layout_marginTop="18dp"
         android:layout_marginBottom="256dp"
         android:background="@android:color/transparent"
@@ -49,7 +49,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/acceder"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.347" />
 
     <TextView
         android:id="@+id/usuario"
@@ -80,13 +80,14 @@
     <Button
         android:id="@+id/acceder"
         android:layout_width="210dp"
-        android:layout_height="41dp"
+        android:layout_height="46dp"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="18dp"
         android:background="@drawable/botonesstilo"
         android:text="Acceder"
         android:textColor="@color/white"
         android:textSize="20sp"
+        android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/registra"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -111,8 +112,8 @@
 
     <Button
         android:id="@+id/registra"
-        android:layout_width="257dp"
-        android:layout_height="28dp"
+        android:layout_width="291dp"
+        android:layout_height="44dp"
         android:background="@android:color/transparent"
         android:text="¿No tienes cuenta?Registrate"
         android:textColor="@color/white"
