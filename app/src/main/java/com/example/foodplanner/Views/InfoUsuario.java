@@ -52,17 +52,22 @@ public class InfoUsuario extends AppCompatActivity {
                 if (mensajeError != null) {
                     Toast.makeText(InfoUsuario.this, mensajeError, Toast.LENGTH_SHORT).show();
                 } else {
-                    // Guardar los datos en variables estáticas
-                    InfoUsuario2.nombre = etNombre.getText().toString().trim();
-                    InfoUsuario2.apellido = etApellido.getText().toString().trim();
-                    InfoUsuario2.usuario = etUsuario.getText().toString().trim();
-                    InfoUsuario2.email = etEmail.getText().toString().trim();
-                    InfoUsuario2.contra = etContra.getText().toString().trim();
+                    // Obtener los datos de los EditText
+                    String nombre = etNombre.getText().toString().trim();
+                    String apellido = etApellido.getText().toString().trim();
+                    String usuario = etUsuario.getText().toString().trim();
+                    String email = etEmail.getText().toString().trim();
+                    String contra = etContra.getText().toString().trim();
 
-
-                    // Crear un Intent para ir a la actividad Bienvenida
+                    // Crear un Intent para ir a la actividad InfoUsuario2
                     Intent intent = new Intent(InfoUsuario.this, InfoUsuario2.class);
-                    startActivity(intent); // Iniciar la actividad Bienvenida
+                    intent.putExtra("nombre", nombre);
+                    intent.putExtra("apellido", apellido);
+                    intent.putExtra("usuario", usuario);
+                    intent.putExtra("email", email);
+                    intent.putExtra("contra", contra);
+
+                    startActivity(intent); // Iniciar la actividad InfoUsuario2
                 }
             }
         });
