@@ -71,6 +71,8 @@ public class FavoritosFragment extends Fragment {
                         Map<String, Object> foodDetails = (Map<String, Object>) foodSnapshot.getValue();
                         Recipe recipe = new Recipe();
                         recipe.setTitle(foodName);
+                        String id = foodDetails.get("id").toString();
+                        recipe.setId(Integer.parseInt(id));
                         String image = foodDetails.get("image").toString();
                         recipe.setImage(image);
                         recipeList.add(recipe);

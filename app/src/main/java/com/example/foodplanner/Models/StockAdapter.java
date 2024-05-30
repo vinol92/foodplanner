@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,8 +43,6 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder> 
         holder.textViewProductName.setText(stock.getName());
         holder.textViewQuantity.setText(String.valueOf(stock.getAmount()));
 
-        holder.addStock.setImageResource(R.drawable.estrella);
-        holder.deleteStock.setImageResource(R.drawable.lector);
 
 
         holder.addStock.setOnClickListener(new View.OnClickListener() {
@@ -75,7 +74,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder> 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private TextView textViewProductName,textViewQuantity;
-        private ImageView addStock, deleteStock;
+        private Button addStock, deleteStock;
 
 
         public ViewHolder(View v) {
