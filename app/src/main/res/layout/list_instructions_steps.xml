@@ -28,7 +28,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Equipments"
+        android:text="Utensilios"
         android:padding="8dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -40,7 +40,7 @@
         android:id="@+id/TextView_ingredients"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ingredients"
+        android:text="Ingredientes"
         android:padding="8dp"/>
 
     <androidx.recyclerview.widget.RecyclerView

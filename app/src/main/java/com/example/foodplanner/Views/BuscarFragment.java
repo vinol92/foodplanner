@@ -52,7 +52,6 @@ public class BuscarFragment extends Fragment {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        recyclerView.setHasFixedSize(true);
         apiManager = new ApiManager(getContext());
 
 

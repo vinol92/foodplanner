@@ -39,7 +39,7 @@ public class InstructionStepAdapter extends RecyclerView.Adapter<InstructionStep
     @Override
     public void onBindViewHolder(@NonNull InstructionStepViewHolder holder, int position) {
         holder.stepTextView.setText(String.valueOf(stepList.get(position).number));
-        holder.stepTitleTextView.setText(stepList.get(position).step);
+        translateStepTitle(stepList.get(position).step, holder);
         holder.ingredients_recycler_view_2.setHasFixedSize(true);
         holder.ingredients_recycler_view_2.setLayoutManager(new LinearLayoutManager(context));
         InstructionsIngredientsAdapter instructionsIngredientsAdapter= new InstructionsIngredientsAdapter(context,stepList.get(position).ingredients);

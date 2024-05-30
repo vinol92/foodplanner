@@ -47,6 +47,7 @@ public class FavoritosFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setHasFixedSize(true);
         if (getArguments() != null) {
             usuarioiniciado = getArguments().getString("usuario");
         }

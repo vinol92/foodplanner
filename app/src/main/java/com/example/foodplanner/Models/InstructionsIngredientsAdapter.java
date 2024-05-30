@@ -12,6 +12,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodplanner.R;
+import com.google.mlkit.common.model.DownloadConditions;
+import com.google.mlkit.nl.translate.TranslateLanguage;
+import com.google.mlkit.nl.translate.Translation;
+import com.google.mlkit.nl.translate.Translator;
+import com.google.mlkit.nl.translate.TranslatorOptions;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -36,7 +41,7 @@ public class InstructionsIngredientsAdapter extends RecyclerView.Adapter<Instruc
 
     @Override
     public void onBindViewHolder(@NonNull InstructionsIngredientsViewHolder holder, int position) {
-        holder.textView_instructions_step_items.setText(stepList.get(position).name);
+        translateStepTitle(stepList.get(position).name, holder);
         Picasso.get().load("https://img.spoonacular.com/ingredients_100x100/" + stepList.get(position).image).into(holder.imageView_instructions_step_items);
     }
 
@@ -46,6 +51,35 @@ public class InstructionsIngredientsAdapter extends RecyclerView.Adapter<Instruc
     @Override
     public int getItemCount() {
         return stepList.size();
+    }
+
+    private void translateStepTitle(String title, InstructionsIngredientsViewHolder holder) {
+        // Configura las opciones del traductor
+        TranslatorOptions options =
+                new TranslatorOptions.Builder()
+                        .setSourceLanguage(TranslateLanguage.ENGLISH)
+                        .setTargetLanguage(TranslateLanguage.SPANISH)
+                        .build();
+
+        Translator englishSpanishTranslator = Translation.getClient(options);
+
+        DownloadConditions conditions = new DownloadConditions.Builder().build();
+
+        englishSpanishTranslator.downloadModelIfNeeded(conditions)
+                .addOnSuccessListener(
+                        ignored -> {
+                            // Traduce el título.
+                            englishSpanishTranslator.translate(title)
+                                    .addOnSuccessListener(
+                                            translatedText -> {
+                                                holder.textView_instructions_step_items.setText(translatedText);
+                                                englishSpanishTranslator.close();
+                                            })
+                                    .addOnFailureListener(
+                                            e -> {
+                                                englishSpanishTranslator.close();
+                                            });
+                        });
     }
 }
 
@@ -59,4 +93,6 @@ TextView textView_instructions_step_items;
         textView_instructions_step_items = itemView.findViewById(R.id.textView_instructions_step_items);
 
     }
+
+
 }

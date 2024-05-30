@@ -11,10 +11,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.WindowDecorActionBar;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodplanner.Interfaces.RecipeClickIntent;
 import com.example.foodplanner.R;
+import com.example.foodplanner.Views.FavoritosFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
@@ -56,7 +58,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         Recipe recipe = recipeList.get(position);
 
         translateRecipeTitle(recipeList.get(position).getTitle(), holder); //Translate to spanish the name of the Recipe
-        Picasso.get().load(recipeList.get(position).image).into(holder.imageFood); //This is a library to load images.
+        Picasso.get().load(recipeList.get(position).image).into(holder.imageFood);
         holder.saveIcon.setImageResource(R.drawable.estrella);
         //If the name of the Recipe is open, it goes to the intent of the recipe selected
         holder.recipeTitle.setOnClickListener(new View.OnClickListener() {

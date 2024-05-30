@@ -11,6 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodplanner.R;
+import com.google.mlkit.common.model.DownloadConditions;
+import com.google.mlkit.nl.translate.TranslateLanguage;
+import com.google.mlkit.nl.translate.Translation;
+import com.google.mlkit.nl.translate.Translator;
+import com.google.mlkit.nl.translate.TranslatorOptions;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -35,12 +40,38 @@ public class InstructionsEquipmentsAdapter extends RecyclerView.Adapter<Instruct
 
     @Override
     public void onBindViewHolder(@NonNull InstructionsEquipmentsViewHolder holder, int position) {
-        holder.textView_instructions_step_items.setText(stepList.get(position).name);
+        translateInstructionStep(stepList.get(position).name, holder);
         Picasso.get().load("https://img.spoonacular.com/ingredients_250x250/" + stepList.get(position).image).into(holder.imageView_instructions_step_items);
     }
 
+    private void translateInstructionStep(String title, InstructionsEquipmentsViewHolder holder) {
+        // Configura las opciones del traductor
+        TranslatorOptions options =
+                new TranslatorOptions.Builder()
+                        .setSourceLanguage(TranslateLanguage.ENGLISH)
+                        .setTargetLanguage(TranslateLanguage.SPANISH)
+                        .build();
 
+        Translator englishSpanishTranslator = Translation.getClient(options);
 
+        DownloadConditions conditions = new DownloadConditions.Builder().build();
+
+        englishSpanishTranslator.downloadModelIfNeeded(conditions)
+                .addOnSuccessListener(
+                        ignored -> {
+                            // Traduce el título.
+                            englishSpanishTranslator.translate(title)
+                                    .addOnSuccessListener(
+                                            translatedText -> {
+                                                holder.textView_instructions_step_items.setText(translatedText);
+                                                englishSpanishTranslator.close();
+                                            })
+                                    .addOnFailureListener(
+                                            e -> {
+                                                englishSpanishTranslator.close();
+                                            });
+                        });
+    }
 
     @Override
     public int getItemCount() {
