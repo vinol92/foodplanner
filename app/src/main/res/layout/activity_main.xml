@@ -87,6 +87,7 @@
         android:text="Acceder"
         android:textColor="@color/white"
         android:textSize="20sp"
+        android:backgroundTint="@color/lightgreen"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/registra"
         app:layout_constraintEnd_toEndOf="parent"
