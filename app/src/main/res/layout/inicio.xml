@@ -107,23 +107,6 @@
 
     </FrameLayout>
 
-    <Button
-        android:id="@+id/premium"
-        android:layout_width="114dp"
-        android:layout_height="30dp"
-        android:layout_gravity="end|center_vertical"
-        android:layout_marginStart="299dp"
 
-        android:layout_marginBottom="11dp"
-        android:background="@drawable/botonesstilo"
-        android:text="Premium"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-        app:layout_constraintEnd_toEndOf="@+id/toolbar"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/toolbar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
