@@ -194,12 +194,12 @@
         <Button
             android:id="@+id/guardar"
             android:layout_width="210dp"
-            android:layout_height="46dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginTop="40dp"
-            android:textAlignment="center"
             android:background="@drawable/botonesstilo"
             android:text="Guardar Cambios"
+            android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="20sp" />
 
