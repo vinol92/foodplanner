@@ -67,8 +67,7 @@ public class FavoriteRecipeAdapter  extends RecyclerView.Adapter<FavoriteRecipeA
             @Override
             public void onClick(View v) {
 
-                String userName = "Pepe";
-                deleteRecipeFromFirebase(recipe,userName);
+                deleteRecipeFromFirebase(recipe,usuarioiniciado);
                 recipeList.remove(holder.getAdapterPosition());
                 notifyItemRemoved(holder.getAdapterPosition());
 

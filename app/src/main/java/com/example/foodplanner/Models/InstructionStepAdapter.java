@@ -38,18 +38,17 @@ public class InstructionStepAdapter extends RecyclerView.Adapter<InstructionStep
 
     @Override
     public void onBindViewHolder(@NonNull InstructionStepViewHolder holder, int position) {
-        holder.stepTextView.setText(String.valueOf(stepList.get(position).number));
-        translateStepTitle(stepList.get(position).step, holder);
-        holder.ingredients_recycler_view_2.setHasFixedSize(true);
-        holder.ingredients_recycler_view_2.setLayoutManager(new LinearLayoutManager(context));
-        InstructionsIngredientsAdapter instructionsIngredientsAdapter= new InstructionsIngredientsAdapter(context,stepList.get(position).ingredients);
-        holder.ingredients_recycler_view_2.setAdapter(instructionsIngredientsAdapter);
+        Step currentStep = stepList.get(position);
+        holder.stepTextView.setText(String.valueOf(currentStep.number));
+        translateStepTitle(currentStep.step, holder);
+
+   holder.ingredients_recycler_view_2.setHasFixedSize(true);
+    holder.ingredients_recycler_view_2.setLayoutManager(new LinearLayoutManager(context));
+    InstructionsIngredientsAdapter instructionsIngredientsAdapter =
+        new InstructionsIngredientsAdapter(context, stepList.get(position).ingredients);
+    holder.ingredients_recycler_view_2.setAdapter(instructionsIngredientsAdapter);
 
 
-        holder.equipments_recycler_view.setHasFixedSize(true);
-        holder.equipments_recycler_view.setLayoutManager(new LinearLayoutManager(context));
-        InstructionsEquipmentsAdapter instructionsEquipmentsAdapter = new InstructionsEquipmentsAdapter(context,stepList.get(position).equipment);
-        holder.equipments_recycler_view.setAdapter(instructionsEquipmentsAdapter);
     }
 
 
@@ -73,6 +72,7 @@ public class InstructionStepAdapter extends RecyclerView.Adapter<InstructionStep
                             englishSpanishTranslator.translate(title)
                                     .addOnSuccessListener(
                                             translatedText -> {
+                                                System.out.println(translatedText);
                                                 holder.stepTitleTextView.setText(translatedText);
                                                 englishSpanishTranslator.close();
                                             })
@@ -90,13 +90,12 @@ public class InstructionStepAdapter extends RecyclerView.Adapter<InstructionStep
 
 class InstructionStepViewHolder extends RecyclerView.ViewHolder {
    TextView stepTextView, stepTitleTextView;
-   RecyclerView equipments_recycler_view, ingredients_recycler_view_2;
+   RecyclerView  ingredients_recycler_view_2;
     public InstructionStepViewHolder(@NonNull View itemView) {
         super(itemView);
         stepTextView = itemView.findViewById(R.id.stepTextView);
         stepTitleTextView = itemView.findViewById(R.id.stepTitleTextView);
-        equipments_recycler_view = itemView.findViewById(R.id.equipments_recycler_view);
-        ingredients_recycler_view_2 = itemView.findViewById(R.id.ingredients_recycler_view_2);
+       ingredients_recycler_view_2 = itemView.findViewById(R.id.ingredients_recycler_view_2);
 
     }
 }

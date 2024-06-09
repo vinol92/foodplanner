@@ -89,7 +89,6 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Manejar errores al obtener el stock de alimentos
                 textFoodName.setText("Error al obtener el stock de alimentos del usuario " + userName);
                 textFoodAmount.setText("Error: " + databaseError.getMessage());
             }

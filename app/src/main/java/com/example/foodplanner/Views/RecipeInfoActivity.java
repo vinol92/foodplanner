@@ -53,7 +53,6 @@ public class RecipeInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_info);
 
-        progressBar = findViewById(R.id.progressBar);
         imageViewFood = findViewById(R.id.imageViewFood);
         textViewInfo = findViewById(R.id.textViewInfo);
         textViewTitle = findViewById(R.id.textViewTitle);
@@ -74,15 +73,8 @@ public class RecipeInfoActivity extends AppCompatActivity {
         });
     }
 
-    private void showContent() {
-        progressBar.setVisibility(View.GONE);
-        imageViewFood.setVisibility(View.VISIBLE);
-        textViewTitle.setVisibility(View.VISIBLE);
-        textViewInfo.setVisibility(View.VISIBLE);
-        recyclerViewSteps.setVisibility(View.VISIBLE);
-        btnBack.setVisibility(View.VISIBLE);
-    }
 
+    //This calls the interface of infoRecipes.
     private final InfoRecipes infoRecipes = new InfoRecipes() {
         @Override
         public void info(InfoIntentRecipe response, String message) {
@@ -90,23 +82,23 @@ public class RecipeInfoActivity extends AppCompatActivity {
             translateRecipeQuery2(response.summary);
             Picasso.get().load(response.image).into(imageViewFood);
 
-            // Verifica si ambos datos están cargados y muestra el contenido
-            if (stepsLoaded) {
-                showContent();
-            } else {
-                infoLoaded = true;
-            }
+
         }
 
         @Override
         public void error(String message) {
-            // Maneja el error
         }
     };
 
-    private boolean infoLoaded = false;
-    private boolean stepsLoaded = false;
 
+    /**
+     * Comentario en español para que se entienda perfectamente lo que hace esto:
+     * Básicamente, esto llama a la interfaz de instructionRecipes que devuelve por así decirlo toda la query que trae
+     * las instrucciones (ingredientes, sus pasos de como se hace). Entonces, eso lo asigna a un recyclerView.
+     * Ese RecyclerView, tiene por dentro otro recyclerview que conecta con un layout donde se ve otra lista para los ingredientes y ya el texto
+     * donde se asigna la información de cada paso. ¿Porque se hace así?. Debido a la API ya que devuelve tanto como los ingredientes y los pasos
+     * como listas, entonces hay que gestionarlos por separados.
+     */
     private final InstructionsRecipes instructionsRecipes = new InstructionsRecipes() {
         @Override
         public void steps(List<Instructions> response, String message) {
@@ -114,22 +106,16 @@ public class RecipeInfoActivity extends AppCompatActivity {
             recyclerViewSteps.setHasFixedSize(true);
             recyclerViewSteps.setAdapter(stepsAdapter);
 
-            // Verifica si ambos datos están cargados y muestra el contenido
-            if (infoLoaded) {
-                showContent();
-            } else {
-                stepsLoaded = true;
-            }
+
         }
 
         @Override
         public void error(String message) {
-            // Maneja el error
         }
     };
 
     private void translateRecipeQuery(String query) {
-        // Configura las opciones del traductor
+        // opciones del traductor
         TranslatorOptions options = new TranslatorOptions.Builder()
                 .setSourceLanguage(TranslateLanguage.ENGLISH)
                 .setTargetLanguage(TranslateLanguage.SPANISH)
@@ -152,7 +138,7 @@ public class RecipeInfoActivity extends AppCompatActivity {
     }
 
     private void translateRecipeQuery2(String query) {
-        // Configura las opciones del traductor
+        //opciones del traductor
         TranslatorOptions options = new TranslatorOptions.Builder()
                 .setSourceLanguage(TranslateLanguage.ENGLISH)
                 .setTargetLanguage(TranslateLanguage.SPANISH)

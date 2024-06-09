@@ -106,17 +106,18 @@ public class ApiManager {
     }
 
 
+    //This method makes the call to Spoonacular with the required parameters to get the steps of a recipe
     public void getRecipeSteps(InstructionsRecipes responseList, int id) {
         recipeSteps steps = retrofit.create(recipeSteps.class);
         Call<List<Instructions>> call = steps.recipeInstructions(id, "882a2637a7044d4fb7c2742a578a3e8f");
         call.enqueue(new Callback<List<Instructions>>() {
 
 
+            //If the response is sucessful, the recipe gets its body and message which contains the steps of the recipe
             @Override
             public void onResponse(Call<List<Instructions>> call, Response<List<Instructions>> response) {
                 if (response.isSuccessful()) {
                 responseList.steps(response.body(),response.message());
-
                 }
             }
 
