@@ -30,7 +30,12 @@
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Insertar en la base de datos" />
+        android:background="@drawable/botonesstilo"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:text="Insertar en la base de datos"
+
+        />
 
 
 </LinearLayout>
