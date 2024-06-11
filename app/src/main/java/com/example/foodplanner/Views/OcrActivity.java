@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.graphics.Insets;
@@ -19,25 +20,34 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.foodplanner.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.android.gms.vision.Detector;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class OcrActivity extends AppCompatActivity {
     SurfaceView cameraView;
     TextView textView;
     CameraSource cameraSource;
     Button button;
+    private DatabaseReference mDatabase;
+
     final int RequestCameraPermissionID = 1001;
     private String detectedText;
     private List<String> productNames = new ArrayList<>(Arrays.asList(
@@ -56,6 +66,7 @@ public class OcrActivity extends AppCompatActivity {
         setContentView(R.layout.activity_ocr);
 
         String userName = getIntent().getStringExtra("username");
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
 
         cameraView = (SurfaceView) findViewById(R.id.surfaceView);
@@ -65,21 +76,58 @@ public class OcrActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (detectedText != null && !detectedText.isEmpty()) {
-                    FirebaseDatabase database = FirebaseDatabase.getInstance();
-                    DatabaseReference myRef = database.getReference("Users").child(userName);
+                    // Divide el texto detectado en líneas
+                    String[] lines = detectedText.split("\\n");
+                    for (String line : lines) {
+                        // Divide cada línea en palabras
+                        String[] parts = line.split("\\s+");
+                        if (parts.length == 2) {
+                            final String product = parts[0].substring(0, 1).toUpperCase() + parts[0].substring(1).toLowerCase();
+                            final int amount;
+                            try {
+                                //Coge el amount en varios
+                                amount = Integer.parseInt(parts[1]);
+                            } catch (NumberFormatException e) {
+                                Toast.makeText(getApplicationContext(), "Cantidad inválida para " + parts[0], Toast.LENGTH_LONG).show();
+                                continue;
+                            }
+                            mDatabase.child("Users").child(userName).child("Stock").child(product).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    int newAmount = amount;
+                                    if (snapshot.exists()) {
+                                        Integer currentAmount = snapshot.child("amount").getValue(Integer.class);
+                                        if (currentAmount != null) {
+                                            newAmount += currentAmount;
+                                        }
+                                    }
+                                    Map<String, Object> updates = new HashMap<>();
+                                    updates.put("amount", newAmount);
+                                    mDatabase.child("Users").child(userName).child("Stock").child(product).updateChildren(updates).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                Toast.makeText(getApplicationContext(), product + " actualizado.", Toast.LENGTH_LONG).show();
+                                            } else {
+                                                Toast.makeText(getApplicationContext(), "Error al actualizar " + product, Toast.LENGTH_LONG).show();
+                                            }
+                                        }
+                                    });
+                                }
 
-                    String[] words = detectedText.split("\\s+");
-                    for (String word : words) {
-
-                        if (!productNames.contains(word.toLowerCase())) {
-                            productNames.add(word.toLowerCase());
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+                                    Toast.makeText(getApplicationContext(), "Error en la base de datos: " + error.getMessage(), Toast.LENGTH_LONG).show();
+                                }
+                            });
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Formato incorrecto en la línea: " + line, Toast.LENGTH_LONG).show();
                         }
-                        myRef.child("Stock").setValue(detectedText);
-                  }
-                    Toast.makeText(getApplicationContext(), "Datos insertados en la base de datos.", Toast.LENGTH_LONG).show();
+                    }
                 }
             }
         });
+
 
 
         TextRecognizer textRecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
