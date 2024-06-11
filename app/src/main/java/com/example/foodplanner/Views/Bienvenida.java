@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.foodplanner.R;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -105,12 +104,30 @@ public class Bienvenida extends AppCompatActivity {
         databaseReference.child(usuario).setValue(usuarioObj)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        // Datos guardados exitosamente
-                        Toast.makeText(Bienvenida.this, "Usuario registrado correctamente", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(Bienvenida.this, Inicio.class);
-                        intent.putExtra("username", usuario); // Pasar el nombre de usuario como extra
-                        startActivity(intent);
-                        finish(); // Finaliza la actividad actual para que no esté en la pila de retroceso
+                        // Si el usuario es un paciente, añadir la clave "Tipo suscripcion"
+                        if ("paciente".equals(tipousuario)) {
+                            databaseReference.child(usuario).child("Tipo suscripcion").setValue("normal")
+                                    .addOnCompleteListener(subscriptionTask -> {
+                                        if (subscriptionTask.isSuccessful()) {
+                                            // Datos guardados exitosamente
+                                            Toast.makeText(Bienvenida.this, "Usuario registrado correctamente", Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent(Bienvenida.this, Inicio.class);
+                                            intent.putExtra("username", usuario); // Pasar el nombre de usuario como extra
+                                            startActivity(intent);
+                                            finish(); // Finaliza la actividad actual para que no esté en la pila de retroceso
+                                        } else {
+                                            // Error al guardar la suscripción
+                                            Toast.makeText(Bienvenida.this, "Error al registrar la suscripción", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                        } else {
+                            // Datos guardados exitosamente para usuarios no pacientes
+                            Toast.makeText(Bienvenida.this, "Usuario registrado correctamente", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(Bienvenida.this, Inicio.class);
+                            intent.putExtra("username", usuario); // Pasar el nombre de usuario como extra
+                            startActivity(intent);
+                            finish(); // Finaliza la actividad actual para que no esté en la pila de retroceso
+                        }
                     } else {
                         // Error al guardar los datos
                         Toast.makeText(Bienvenida.this, "Error al registrar el usuario", Toast.LENGTH_SHORT).show();

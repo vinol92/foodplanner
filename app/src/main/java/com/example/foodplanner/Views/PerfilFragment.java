@@ -47,7 +47,7 @@ public class PerfilFragment extends Fragment {
         btnGuardar = rootView.findViewById(R.id.guardar);
 
         // Configurar el campo de suscripción como no editable
-        intextSub.setText("normal");
+
         intextSub.setFocusable(false);
         intextSub.setFocusableInTouchMode(false); // Esto asegura que no sea editable
 
@@ -91,12 +91,16 @@ public class PerfilFragment extends Fragment {
                     String apellido = snapshot.child("apellido").getValue(String.class);
                     String usuario = snapshot.child("usuario").getValue(String.class);
                     String email = snapshot.child("email").getValue(String.class);
+                    String suscripcion = snapshot.child("tiposuscripcion").getValue(String.class); // Obtener el tipo de suscripción
+
                     ArrayList<String> alergiasList = (ArrayList<String>) snapshot.child("alergias").getValue();
 
                     intextNombre.setText(nombre);
                     intextApellido.setText(apellido);
                     intextUsuario.setText(usuario);
                     intextEmail.setText(email);
+                    intextSub.setText(suscripcion); // Configurar el tipo de suscripción en el campo correspondiente
+
                     if (alergiasList != null) {
                         intextAlergia.setText(TextUtils.join(", ", alergiasList));
                     }
@@ -111,7 +115,6 @@ public class PerfilFragment extends Fragment {
             }
         });
     }
-
     private void saveUserInfo() {
         String nombre = intextNombre.getText().toString().trim();
         String apellido = intextApellido.getText().toString().trim();

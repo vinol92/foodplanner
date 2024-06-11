@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/withegreen"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Título -->
+        <TextView
+            android:id="@+id/titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Suscríbete a nuestra versión premium y disfruta de todas las ventajas"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:paddingBottom="16dp"/>
+
+        <!-- Ventajas numeradas -->
+        <TextView
+            android:id="@+id/ventaja1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1- Sin publicidad"
+            android:textSize="16sp"
+            android:paddingBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/ventaja2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2- Se te asignará un nutricionista que se pondrá en contacto contigo vía email"
+            android:textSize="16sp"
+            android:paddingBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/ventaja3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3- Seguimiento personalizado por profesionales enfocado a tu objetivo"
+            android:textSize="16sp"
+            android:paddingBottom="16dp"/>
+
+        <!-- Precio -->
+        <TextView
+            android:id="@+id/texto_precio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tan solo por :"
+            android:textSize="16sp"
+            android:paddingBottom="8dp"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/precio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="9,99€ al mes"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#125306"
+            android:gravity="center"
+            android:paddingBottom="16dp"/>
+
+
+        <!-- Métodos de pago -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingBottom="16dp">
+
+            <CheckBox
+                android:id="@+id/checkbox_visa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_visa"
+                android:layout_marginStart="8dp"/>
+
+            <CheckBox
+                android:id="@+id/checkbox_mastercard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"/>
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_mastercard"
+                android:layout_marginStart="8dp"/>
+
+            <CheckBox
+                android:id="@+id/checkbox_paypal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"/>
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_paypal"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
+
+
+        <!-- Datos de la tarjeta de crédito -->
+        <EditText
+            android:id="@+id/Titular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre de la tarjeta"
+            android:padding="12dp"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/card_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Número de tarjeta"
+            android:inputType="number"
+            android:padding="12dp"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/card_expiry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Fecha de expiración (MM/AA)"
+            android:inputType="date"
+            android:padding="12dp"
+
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/card_cvv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="CVV"
+            android:inputType="numberPassword"
+            android:padding="12dp"
+
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Botón de realizar pago -->
+        <Button
+            android:id="@+id/realizar_pago"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Realizar Pago"
+            android:textSize="20sp"
+            android:padding="12dp"
+            android:background="@drawable/botonesstilo"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="10dp"
+            />
+    </LinearLayout>
+</ScrollView>

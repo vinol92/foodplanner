@@ -7,12 +7,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.foodplanner.R;
 import com.google.firebase.database.DataSnapshot;
@@ -70,11 +66,13 @@ public class MainActivity extends AppCompatActivity {
                     String storedUsername = userSnapshot.child("usuario").getValue(String.class);
                     String storedEmail = userSnapshot.child("email").getValue(String.class);
                     String storedPassword = userSnapshot.child("contra").getValue(String.class);
+                    String tipoUsuario = userSnapshot.child("tipousuario").getValue(String.class);
 
                     if ((userInput.equals(storedUsername) || userInput.equals(storedEmail)) && storedPassword != null && storedPassword.equals(password)) {
                         userFound = true;
                         Intent intent = new Intent(MainActivity.this, Inicio.class);
                         intent.putExtra("username", userInput); // Pasar el nombre de usuario como extra
+                        intent.putExtra("tipousuario", tipoUsuario); // Pasar el tipo de usuario como extra
                         startActivity(intent);
                         finish(); // Finaliza la actividad actual para que no esté en la pila de retroceso
                         break;
@@ -92,5 +90,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
 }

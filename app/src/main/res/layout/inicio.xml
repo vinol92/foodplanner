@@ -25,13 +25,25 @@
             android:id="@+id/nombreusu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="left"
             android:text="Nombre de usuario"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
-
             />
 
+        <Button
+            android:id="@+id/btnpremium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Premium"
+            android:layout_marginVertical="5dp"
+            android:layout_gravity="right"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/botonesstilo"
+
+            tools:layout_editor_absoluteX="306dp" />
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -106,6 +118,7 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
     </FrameLayout>
+
 
 
 
