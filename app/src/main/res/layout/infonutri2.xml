@@ -38,7 +38,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar2"
-        app:layout_constraintVertical_bias="0.001" />
+        app:layout_constraintVertical_bias="0.001"
+        android:progressTint="@color/lightgreen"/>
 
     <TextView
         android:id="@+id/textView"
@@ -63,74 +64,37 @@
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.38"
+        app:layout_constraintHorizontal_bias="0.404"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.179" />
-
-    <EditText
-        android:id="@+id/intelefono"
-        android:layout_width="272dp"
-        android:layout_height="45dp"
-        android:background="@drawable/shape"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.401" />
 
     <EditText
         android:id="@+id/inuser"
         android:layout_width="272dp"
         android:layout_height="45dp"
         android:background="@drawable/shape"
+        android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.553" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="301dp"
-        android:layout_height="27dp"
-        android:layout_marginTop="20dp"
-        android:text="Con el usuario o email podrás acceder a tu cuenta."
-        android:textColor="@color/white"
-        android:textSize="13sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.506" />
-
-    <TextView
-        android:id="@+id/user"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Usuario"
-        android:textColor="@color/white"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.494" />
+        app:layout_constraintVertical_bias="0.526" />
 
     <EditText
-        android:id="@+id/inemail"
+        android:id="@+id/intelefono"
         android:layout_width="272dp"
         android:layout_height="45dp"
         android:background="@drawable/shape"
+        android:inputType="phone"
+        android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.28" />
+        app:layout_constraintVertical_bias="0.415" />
 
     <TextView
         android:id="@+id/telefono"
@@ -144,44 +108,66 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.348" />
+        app:layout_constraintVertical_bias="0.367" />
 
     <EditText
         android:id="@+id/incontra"
         android:layout_width="272dp"
         android:layout_height="45dp"
         android:background="@drawable/shape"
+        android:inputType="textPassword"
+        android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.696" />
+        app:layout_constraintVertical_bias="0.671"
+        />
 
     <TextView
-        android:id="@+id/contra2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Repita contraseña"
+        android:id="@+id/textView5"
+        android:layout_width="411dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="20dp"
+        android:text="Recuerda tu contraseña ha de tener minimo ocho caractéres una mauscula, letras de (a-z) numeros (0-9) y caractéres especiales."
+        android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="25sp"
+        android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.757" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.802" />
 
     <EditText
-        android:id="@+id/incontra2"
+        android:id="@+id/inemail"
         android:layout_width="272dp"
         android:layout_height="45dp"
         android:background="@drawable/shape"
+        android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.822" />
+        app:layout_constraintVertical_bias="0.309" />
+
+    <TextView
+        android:id="@+id/user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Usuario"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.478" />
 
     <TextView
         android:id="@+id/email"
@@ -195,7 +181,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.228" />
+        app:layout_constraintVertical_bias="0.261" />
 
     <TextView
         android:id="@+id/contra"
@@ -208,22 +194,50 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.635" />
+        app:layout_constraintVertical_bias="0.618" />
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="345dp"
-        android:layout_height="29dp"
+        android:id="@+id/contra2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Repita contraseña"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.73" />
+
+    <EditText
+        android:id="@+id/incontra2"
+        android:layout_width="272dp"
+        android:layout_height="45dp"
+        android:background="@drawable/shape"
+        android:inputType="textPassword"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.786" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="417dp"
+        android:layout_height="25dp"
         android:layout_marginTop="20dp"
-        android:text="Tras verificar tus datos pasarás al proceso de selección."
+        android:text="Con el usuario o email podrás acceder a tu cuenta."
+        android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.757"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.321" />
+        app:layout_constraintVertical_bias="0.461" />
+
 
     <Button
         android:id="@+id/siguiente"
@@ -233,27 +247,13 @@
         android:text="Siguiente"
         android:textColor="@color/white"
         android:textSize="20sp"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.957" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="383dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="20dp"
-        android:text="Recuerda tu contraseña ha de tener minimo ocho caractéres una mauscula, letras de (a-z) numeros (0-9) y caractéres especiales."
-        android:textColor="@color/white"
-        android:textSize="13sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.607"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.859" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

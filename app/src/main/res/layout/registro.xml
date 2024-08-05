@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/pregistro"
     android:background="#405F48">
-    >
+
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar2"
@@ -42,7 +42,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar2"
-        app:layout_constraintVertical_bias="0.001" />
+        app:layout_constraintVertical_bias="0.001"
+        android:progressTint="@color/lightgreen"/>
 
     <TextView
         android:id="@+id/textView"
@@ -61,9 +62,9 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/myButton"
+        android:id="@+id/ideas"
         android:layout_width="373dp"
-        android:layout_height="89dp"
+        android:layout_height="100dp"
         android:background="@drawable/seleccion"
         android:gravity="start|top"
         android:paddingLeft="16dp"
@@ -75,15 +76,14 @@
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.447"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.405" />
+        app:layout_constraintVertical_bias="0.453" />
 
     <Button
-        android:id="@+id/myButton3"
-        android:layout_width="373dp"
-        android:layout_height="89dp"
+        android:id="@+id/unirmenutri"
+        android:layout_width="374dp"
+        android:layout_height="100dp"
         android:layout_marginTop="9dp"
         android:background="@drawable/seleccion"
         android:gravity="start|top"
@@ -96,14 +96,15 @@
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myButton"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/ideas"
+        app:layout_constraintVertical_bias="0.063" />
 
     <Button
-        android:id="@+id/myButton2"
+        android:id="@+id/dieta"
         android:layout_width="373dp"
-        android:layout_height="89dp"
+        android:layout_height="100dp"
         android:background="@drawable/seleccion"
         android:gravity="start|top"
         android:paddingLeft="16dp"
@@ -115,10 +116,9 @@
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.447"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.272" />
+        app:layout_constraintVertical_bias="0.281" />
 
     <TextView
         android:id="@+id/textView2"
@@ -129,7 +129,7 @@
         android:text="Lo primero es que deseas hacer con nosotros."
         android:textColor="@color/white"
         android:textSize="13sp"
-        app:layout_constraintBottom_toTopOf="@+id/myButton"
+        app:layout_constraintBottom_toTopOf="@+id/ideas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.11"
         app:layout_constraintStart_toStartOf="parent"

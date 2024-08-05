@@ -9,51 +9,48 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="413dp"
-        android:layout_height="41dp"
+        android:layout_width="414dp"
+        android:layout_height="49dp"
+        android:layout_gravity="center_horizontal"
         android:background="@color/darckgreen"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        android:layout_gravity="center_horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
-        <!-- Agrega un TextView centrado dentro del Toolbar -->
         <TextView
             android:id="@+id/nombreusu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="left"
             android:text="Nombre de usuario"
             android:textColor="#FFFFFF"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            />
 
+        <Button
+            android:id="@+id/btnpremium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Premium"
+            android:layout_marginVertical="5dp"
+            android:layout_gravity="right"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/botonesstilo"
+
+            tools:layout_editor_absoluteX="306dp" />
 
     </androidx.appcompat.widget.Toolbar>
 
-    <Button
-        android:id="@+id/siguiente"
-        android:layout_width="114dp"
-        android:layout_height="30dp"
-        android:layout_gravity="end|center_vertical"
-        android:background="@drawable/botonesstilo"
-        android:text="Premium"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.946"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.06" />
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
-        android:layout_height="60sp"
+        android:layout_height="wrap_content"
         android:background="@color/darckgreen"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,8 +61,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <ImageButton
                 android:id="@+id/home"
@@ -110,5 +107,19 @@
         </LinearLayout>
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+    </FrameLayout>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
